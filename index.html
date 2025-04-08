@@ -133,11 +133,6 @@
       border-top: 1px solid #ccc;
       margin: 2rem 0;
     }
-@media (max-width: 768px) {
-  .desktop-only {
-    display: none;
-  }
-}
 
   </style>
 <script>
@@ -156,7 +151,7 @@
     }
     isPlaying = !isPlaying;
   }
-  
+
   function switchLang(lang) {
     document.querySelector('.lang-it').classList.remove('active');
     document.querySelector('.lang-en').classList.remove('active');
@@ -170,18 +165,10 @@
 
 </head>
 <body>
-<!-- <audio id="bg-music" autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-  
-  <button id="music-toggle" onclick="toggleMusic()">🔊</button> 
-
-couln't figure out music so i left it behind, come on i only studied golang lmao. if someone who is good at coding can help me out i would be very happy <3 -->
-
+ 
   <div class="side-gifs">
-    <img src="logo.gif" class="side-gif left desktop-only" alt="logo">
-<img src="excadrill.gif" class="side-gif right desktop-only" alt="excadrill">
+    <img src="logo.gif" class="side-gif left" alt="logo">
+    <img src="excadrill.gif" class="side-gif right" alt="excadrill">
   </div>
   <div class="lang-switch">
     <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
@@ -300,6 +287,9 @@ Se anche solo uno muore prima della Lega, o perdi la sfida contro la Lega → ru
 • Non possono scendere in campo in nessuna battaglia
 • Non contano come Jolly o membri del team
 • Devono restare passivi nel box o nel party</h4>
+<div class="pdf-download">
+  <a href="locked_team_challenge.pdf" download>Scarica PDF</a>
+</div>
 </div>
 <div class="lang-en">
   <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
@@ -420,10 +410,11 @@ If even one of them faints before the League, or you lose the final battle → t
 • They must NEVER enter battle  
 • They don’t count as Jollys or team members  
 • Must stay in the box or party but inactive</h4>
-</div>
 <div class="pdf-download">
-  <a href="locked_team_challenge.pdf" download>Download PDF</a> <!-- yeah pdf here is just in italian, will eventually change the code to have both download in italian and english depending on the language chosen -->
+  <a href="locked_team_challenge_eg.pdf" download>Download PDF</a>
 </div>
+</div>
+
   </div>
 </body>
 </html>
