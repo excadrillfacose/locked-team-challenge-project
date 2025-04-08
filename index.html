@@ -5,6 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Locked Team Challenge</title>
   <style>
+    .side-gifs {
+  position: absolute;
+  top: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+  pointer-events: none; /* le gif non coprono clic */
+}
+
+.side-gif {
+  height: 140px;
+  pointer-events: none;
+}
+
+#music-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  z-index: 999;
+}
+
     body {
     background: linear-gradient(135deg, #ff4d4d, #4d79ff);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -108,6 +136,22 @@
 
   </style>
 <script>
+  const music = document.getElementById("bg-music");
+  const toggleButton = document.getElementById("music-toggle");
+
+  let isPlaying = true;
+
+  function toggleMusic() {
+    if (isPlaying) {
+      music.pause();
+      toggleButton.textContent = "🔇";
+    } else {
+      music.play();
+      toggleButton.textContent = "🔊";
+    }
+    isPlaying = !isPlaying;
+  }
+  
   function switchLang(lang) {
     document.querySelector('.lang-it').classList.remove('active');
     document.querySelector('.lang-en').classList.remove('active');
@@ -121,6 +165,17 @@
 
 </head>
 <body>
+  <audio id="bg-music" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
+  <button id="music-toggle" onclick="toggleMusic()">🔊</button>
+  
+  <div class="side-gifs">
+    <img src="logo.gif" class="side-gif left" alt="logo">
+    <img src="excadrill.gif" class="side-gif right" alt="excadrill">
+  </div>
   <div class="lang-switch">
     <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
     <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
