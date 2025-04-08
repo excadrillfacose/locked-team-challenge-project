@@ -44,7 +44,29 @@
       display: flex;
       justify-content: center;
       animation: fadeIn 0.5s ease-in-out;
+      color: #000;
+      transition: all 0.3s ease;
     }
+
+
+.main-container {
+  background-color: white;
+}
+
+/* DARK MODE STYLES */
+body.dark-mode {
+  background: linear-gradient(135deg, #111, #ff4d4d);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in-out;
+      color: #ffffff;
+      transition: all 0.3s ease;
+  
+}
+
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -91,8 +113,27 @@
       padding: 2rem;
       border-radius: 10px;
       max-width: 800px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgb(0, 0, 0);
     }
+
+    .container.dark-mode {
+      background-color: #000000;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 0 15px rgb(255, 0, 0);
+    }
+
+    body.dark-mode a {
+  color: #00aeff;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+  color: #ffffff; /* Imposta il colore del testo a bianco */
+}
 
     h1, h2 {
       color: #222;
@@ -136,7 +177,7 @@
       border-top: 1px solid #ccc;
       margin: 2rem 0;
     }
-
+    
   </style>
 <script>
   const music = document.getElementById("bg-music");
@@ -164,11 +205,14 @@
   window.onload = () => {
     switchLang('it'); // default in italiano
   }
+
+  
 </script>
+
 
 </head>
 <body>
- 
+  <button id="darkModeToggle" style="position: fixed; top: 20px; left: 20px; z-index: 999;">🌓</button>
   <div class="side-gifs">
     <img src="logo.gif" class="side-gif left desktop-only" alt="logo">
 <img src="excadrill.gif" class="side-gif right desktop-only" alt="excadrill">
@@ -293,6 +337,14 @@ Se anche solo uno muore prima della Lega, o perdi la sfida contro la Lega → ru
 <div class="pdf-download">
   <a href="locked_team_challenge.pdf" download>Scarica PDF</a>
 </div>
+<h2>🔧 Tools & Link Utili</h2>
+<ul>
+  <li><a href="https://www.kinglercalc.com/" target="_blank">Calcolatore giochi valilla – KinglerCalc</a></li>
+  <li><a href="https://nuzlocke.app/" target="_blank">Nuzlocke Tracker </a></li>
+</ul>
+<p><strong>Consiglio:</strong> 
+  Inizia con un gioco vanilla. Una volta che ti senti sicuro, prova Emerald Imperium, Radical Red, Run & Bun, Unbound, Blaze Black, Volt White, Blazing Emerald, Renegade Platinum o altri hack ROM.</p>
+
 </div>
 <div class="lang-en">
   <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
@@ -416,8 +468,22 @@ If even one of them faints before the League, or you lose the final battle → t
 <div class="pdf-download">
   <a href="locked_team_challenge_eg.pdf" download>Download PDF (no file available in english yet, sorry)</a>
 </div>
+<h2>🔧 Tools & Useful Links</h2>
+<ul>
+  <li><a href="https://www.kinglercalc.com/" target="_blank">Vanilla Damage Calculator – KinglerCalc</a></li>
+  <li><a href="https://nuzlocke.app/" target="_blank">Nuzlocke Tracker for Vanilla & ROM Hacks</a></li>
+</ul>
+<p><strong>Recommended:</strong> Start on a vanilla game. Once confident, try Emerald Imperium, Radical Red, Run & Bun, Unbound, Blaze Black, Volt White, Blazing Emerald, Renegade Platinum or other ROM hacks.</p>
+
 </div>
 
   </div>
 </body>
+<script>
+  const toggle = document.getElementById("darkModeToggle");
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    document.querySelector('.container').classList.toggle("dark-mode");
+  });
+</script>
 </html>
