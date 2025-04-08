@@ -133,6 +133,11 @@
       border-top: 1px solid #ccc;
       margin: 2rem 0;
     }
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+}
 
   </style>
 <script>
@@ -175,8 +180,8 @@
 couln't figure out music so i left it behind, come on i only studied golang lmao. if someone who is good at coding can help me out i would be very happy <3 -->
 
   <div class="side-gifs">
-    <img src="logo.gif" class="side-gif left" alt="logo">
-    <img src="excadrill.gif" class="side-gif right" alt="excadrill">
+    <img src="logo.gif" class="side-gif left desktop-only" alt="logo">
+<img src="excadrill.gif" class="side-gif right desktop-only" alt="excadrill">
   </div>
   <div class="lang-switch">
     <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
