@@ -5,19 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Locked Team Challenge</title>
   <style>
-    .side-gifs {
-  position: absolute;
-  top: 120px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 2rem;
-  pointer-events: none; /* le gif non coprono clic */
-}
+    
 
 .side-gif {
-  height: 140px;
-  pointer-events: none;
+  position: absolute;
+  top: 250px;
+  transform: translateY(-50%);
+  width: 220px; /* Aumenta la dimensione */
+  z-index: 1;
+}
+
+.side-gif.left {
+  left: 40px; /* più verso il contenuto */
+}
+
+.side-gif.right {
+  right: 40px;
 }
 
 #music-toggle {
