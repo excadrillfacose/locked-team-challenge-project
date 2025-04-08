@@ -20,6 +20,41 @@
       to { opacity: 1; }
     }
 
+    .lang-switch {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 999;
+  }
+
+  .lang-switch img {
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: transform 0.2s;
+  }
+
+  .lang-switch img:hover {
+    transform: scale(1.1);
+  }
+
+  .lang-it, .lang-en {
+    display: none;
+  }
+
+  .lang-it.active, .lang-en.active {
+    display: block;
+  }
+
+  .pdf-download {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
     .container {
       background-color: #ffffff;
       padding: 2rem;
@@ -72,9 +107,26 @@
     }
 
   </style>
+<script>
+  function switchLang(lang) {
+    document.querySelector('.lang-it').classList.remove('active');
+    document.querySelector('.lang-en').classList.remove('active');
+    document.querySelector('.lang-' + lang).classList.add('active');
+  }
+
+  window.onload = () => {
+    switchLang('it'); // default in italiano
+  }
+</script>
+
 </head>
 <body>
+  <div class="lang-switch">
+    <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
+    <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
+  </div>
   <div class="container">
+    <div class="lang-it active">
     <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
     <h4><b>Ideatore:</b>  Gabriele Bertani<br> AKA: <a href=https://www.instagram.com/ultras_di.excadrill/>@ultras_di.excadrill </a></h4>
     <hr>
@@ -186,7 +238,130 @@ Se anche solo uno muore prima della Lega, o perdi la sfida contro la Lega → ru
 • Non possono scendere in campo in nessuna battaglia
 • Non contano come Jolly o membri del team
 • Devono restare passivi nel box o nel party</h4>
+</div>
+<div class="lang-en">
+  <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
+  <h4><b>Creator:</b> Gabriele Bertani<br>AKA: <a href=https://www.instagram.com/ultras_di.excadrill/>@ultras_di.excadrill </a></h4>
+  <hr>
 
+  <h2>⚔️ GOAL</h2>
+  <h4>Defeat the League Champion with a pre-built team, without ever breaking the rules.</h4>
+
+  <h2>🧠 PREPARATION PHASE</h2>
+  <h4>1. Choose a Pokémon game  
+Any mainline title or ROM Hack is allowed. Apply the rules based on your chosen version.  
+2. Create your final team  
+• Pick 6 Pokémon total (your starter must be one of them)  
+• Team must be set BEFORE starting the run and CANNOT be changed  
+• Each Pokémon must be:  
+ - Obtainable in the game before the first Pokémon League battle  
+ - Caught before entering the League  
+ - No legendaries, mythicals, or pseudo-legendaries (limit: BST under 600)  
+ - No in-game trades with NPCs  
+• For each Pokémon, specify the exact area you plan to catch it (e.g., Route 5, Diglett Cave, etc.)  
+• You can’t catch more than one Pokémon (main or jolly) in the same location  
+• You must catch the **first** specimen of the planned Pokémon you encounter in its designated area.  
+ If you find it before that area → you can’t catch it.  
+
+📌 SPECIES CLAUSE ACTIVE  
+You cannot have two Pokémon of the same species, including alternate forms (e.g., Rotom, Muk and Alolan Muk).</h4>
+
+  <h2>🎮 FIRST RIVAL BATTLE: EXEMPT</h2>
+  <h4>The very first battle against your rival (right after receiving your starter) is not bound by the rules.  
+Any KOs don’t count and won’t ruin your run.  
+It’s affected by RNG (IVs, random moves) → no point restricting it.</h4>
+
+  <h2>🧭 REGION SPLIT</h2>
+  <h4>Divide the map into 5 macro-areas to earn Jolly Pokémon.  
+Each macro-area can include large parts of the region (e.g., “from city X to city Y”).</h4>
+
+  <h2>👣 STARTING THE RUN</h2>
+  <h4>1. Pick your Starter  
+The starter must be one of your official team members.  
+2. Catch your Companion Pokémon  
+• As soon as you reach the first area with wild Pokémon, catch the first one you encounter  
+• This becomes your Companion Pokémon:  
+ - Must be released after earning the 2nd badge  
+ - Does not need to be declared beforehand  
+ - If it faints → run continues, but it can’t be used anymore  
+ - Must be released once you catch your second team member  
+ - Must be released once you catch your first Jolly</h4>
+
+  <h2>🧱 MAIN TEAM RULES</h2>
+  <h4>✅ You CAN:  
+• Use them freely  
+• Train up to the Level Cap (same as the highest-level Pokémon of the next Gym Leader or Champion)  
+• Exceed the level cap DURING the boss battle is allowed  
+
+❌ Rules:  
+• If a team member faints before the League → run is lost  
+• During the Pokémon League:  
+ - If one dies → it can’t be used again  
+ - Reviving in any way is forbidden  
+• You cannot replace a dead member with anyone, not even a Jolly</h4>
+
+  <h2>🃏 JOLLY POKÉMON</h2>
+  <h4>Jollies are limited, bonus Pokémon that you can sacrifice.  
+
+💡 How to get them:  
+• You earn 1 Jolly per macro-area  
+• For each Jolly you must:  
+ - Choose a specific zone within the macro-area (e.g., “Route 9”, “Petalburg Woods”)  
+ - Catch the first Pokémon you encounter there  
+ - Repel trick is allowed  
+
+📜 Rules:  
+• Each Jolly can participate in up to 3 battles  
+ - If it enters the field → it counts  
+ - If it stays in the team but doesn’t battle → it doesn’t count  
+ - Wild battles also count if it enters  
+• After the 3rd battle → it must be released  
+• If it dies → it’s lost, but the run continues  
+• Can go 1 level above the level cap  
+• Cannot replace official team members during the League</h4>
+
+  <h2>🔒 BANS & RESTRICTIONS</h2>
+  <h4>❌ Banned:  
+• Grinding → you can only level up via:  
+ - Rare Candies (you can give yourself 999 at the start and refill later if needed)  
+ - Trainer battles  
+• Using items from the bag during battle  
+• EV-enhancing items (Protein, Zinc, etc.)  
+• Using:  
+ - Choice Items  
+ - Mega Evolution  
+ - Z-Moves  
+ - Dynamax  
+ - Terastallization  
+ - Bijou  
+ - Revival Blessing (move is banned)  
+
+✅ Allowed:  
+• Healing Pokémon OUTSIDE of battle with items  
+• Teaching moves via TMs/HMs and changing movesets  
+ - TMs are treated as consumables, even post-Gen 5  
+ - You can’t farm them in casinos or similar places  
+• Held items like Berries, Charcoal, Life Orb, Eviolite, etc.  
+• Using Ability Capsules if available</h4>
+
+  <h2>🏁 WIN CONDITION</h2>
+  <h4>Defeat the Pokémon League Champion using the same 6 Pokémon chosen at the beginning.  
+If even one of them faints before the League, or you lose the final battle → the run is lost.</h4>
+
+  <h2>🔥 HARDCORE MODE (optional)</h2>
+  <h4>• If a Jolly dies → the run is lost  
+• Jollies can’t go over the level cap</h4>
+
+  <h2>🔧 HM SLAVES & MORE</h2>
+  <h4>⚙️ HM Slaves are allowed, but:  
+• They can only be used to apply HMs (Cut, Surf, Strength, etc.)  
+• They must NEVER enter battle  
+• They don’t count as Jollys or team members  
+• Must stay in the box or party but inactive</h4>
+</div>
+<div class="pdf-download">
+  <a href="locked_team_challenge.pdf" download>Download PDF</a>
+</div>
   </div>
 </body>
 </html>
