@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -135,7 +136,7 @@
       justify-content: center;
       animation: fadeIn 0.5s ease-in-out;
       color: #000;
-      transition: all 0.3s ease;
+      transition: all 0.6s ease;
     }
 
 
@@ -157,6 +158,20 @@ body.dark-mode {
   
 }
 
+
+    @keyframes shiftAnimation {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+      100% { transform: translateY(0); }
+    }
+
+    .shifting {
+      animation: shiftAnimation 0.3s ease-in-out;
+    }
+
+    .content-shifting {
+      animation: shiftAnimation 0.3s ease-in-out;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -288,9 +303,18 @@ body.dark-mode h4 {
   }
 
   function switchLang(lang) {
-    document.querySelector('.lang-it').classList.remove('active');
-    document.querySelector('.lang-en').classList.remove('active');
-    document.querySelector('.lang-' + lang).classList.add('active');
+    const container = document.querySelector('.container');
+    container.classList.add("shifting");
+    
+    setTimeout(() => {
+      document.querySelector('.lang-it').classList.remove('active');
+      document.querySelector('.lang-en').classList.remove('active');
+      document.querySelector('.lang-' + lang).classList.add('active');
+      
+      setTimeout(() => {
+        container.classList.remove("shifting");
+      }, 300);
+    }, 0);
   }
 
   window.onload = () => {
@@ -584,9 +608,18 @@ If even one of them faints before the League, or you lose the final battle → t
 <script>
   const toggle = document.getElementById("darkModeToggle");
   toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    document.querySelector('.container').classList.toggle("dark-mode");
-    document.getElementById('main-header').classList.toggle('dark-mode');
+    const container = document.querySelector('.container');
+    container.classList.add("content-shifting");
+    
+    setTimeout(() => {
+      document.body.classList.toggle("dark-mode");
+      document.querySelector('.container').classList.toggle("dark-mode");
+      document.getElementById('main-header').classList.toggle('dark-mode');
+      
+      setTimeout(() => {
+        container.classList.remove("content-shifting");
+      }, 300);
+    }, 0);
   });
 </script>
 </html>
