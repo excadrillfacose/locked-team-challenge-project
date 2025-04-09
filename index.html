@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -345,7 +346,7 @@ body.dark-mode h4 {
 <body>
   <header id="main-header">
     <button id="darkModeToggle">🌓</button>
-    <h1 id="header-title">LOCKED TEAM PROJECT</h1>
+    <h2 id="header-title">LOCKED TEAM PROJECT</h2>
     <div class="lang-switch">
       <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
       <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
@@ -612,6 +613,27 @@ If even one of them faints before the League, or you lose the final battle → t
 <p><strong>Recommended:</strong> Start on a vanilla game. Once confident, try Emerald Imperium, Radical Red, Run & Bun, Unbound, Blaze Black, Volt White, Blazing Emerald, Renegade Platinum or other ROM hacks.</p>
 
 </div>
+<div class="pdf-download">
+  <button onclick="openHallOfFame()" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #ff4d4d; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
+    🏆 Hall of Fame
+  </button>
+</div>
+
+<script>
+  function openHallOfFame() {
+    // Controlla quale lingua è attualmente attiva
+    var lang;
+    if(document.querySelector('.lang-it.active')) {
+      lang = "it";
+    } else if(document.querySelector('.lang-en.active')) {
+      lang = "en";
+    } else {
+      lang = "it"; // default
+    }
+    window.location.href = "hall_of_fame.html?lang=" + lang;
+  }
+</script>
+
 
   </div>
   <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A"  
