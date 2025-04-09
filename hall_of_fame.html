@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Locked Team – Hall of Fame</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    body {
+      background: linear-gradient(270deg, #fdd100, #2873b7);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in-out;
+      color: #000;
+      transition: all 0.6s ease;
+    }
+    body.dark-mode {
+      background: linear-gradient(90deg, #5a4a42, #bd4242);
+      color: #fff;
+    }
+    #main-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 60px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      border-radius: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      width: 90%;
+      max-width: 800px;
+    }
+    body.dark-mode #main-header {
+      background: #000;
+      box-shadow: 0 0 15px rgba(255,0,0,0.3);
+    }
+    #header-title {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #222;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+    body.dark-mode #header-title {
+      color: #fff;
+    }
+    #darkModeToggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .lang-switch {
+      display: flex;
+      gap: 10px;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+    }
+    .lang-switch img {
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: transform 0.2s;
+    }
+    .lang-switch img:hover {
+      transform: scale(1.1);
+    }
+    .container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 0 15px rgb(0, 0, 0);
+      margin-top: 80px;
+      width: 100%;
+    }
+    .container.dark-mode {
+      background-color: #000000;
+      box-shadow: 0 0 15px rgb(255, 0, 0);
+    }
+    body.dark-mode h1,
+    body.dark-mode h2,
+    body.dark-mode h4,
+    body.dark-mode p {
+      color: white;
+    }
+    .lang-it, .lang-en {
+      display: none;
+    }
+    .lang-it.active, .lang-en.active {
+      display: block;
+    }
+    .pdf-download {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .pdf-download button {
+      cursor: pointer;
+      padding: 10px 16px;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: none;
+      background-color: #ff4d4d;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.2s ease;
+    }
+    .pdf-download button:hover {
+      background-color: #ff1a1a;
+    }
+    #support-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff4d4d;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.2s ease;
+      z-index: 1000;
+    }
+    #support-btn:hover {
+      background-color: #ff1a1a;
+    }
+    .side-gif {
+      position: absolute;
+      top: 250px;
+      width: 220px;
+      z-index: 1;
+    }
+    .side-gif.left {
+      left: 40px;
+    }
+    .side-gif.right {
+      right: 40px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header id="main-header">
+    <button id="darkModeToggle">🌓</button>
+    <h2 id="header-title">LOCKED TEAM – HALL OF FAME</h2>
+    <div class="lang-switch">
+      <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
+      <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
+    </div>
+  </header>
+
+  <div class="side-gifs">
+    <img src="logo.gif" class="side-gif left desktop-only" alt="logo">
+    <img src="excadrill.gif" class="side-gif right desktop-only" alt="excadrill">
+  </div>
+
+  <div class="container">
+    <div class="lang-it active">
+      <h1>🏆 HALL OF FAME</h1>
+      <p>Per essere inseriti nella Hall of Fame, è necessario:</p>
+      <ul>
+        <li>✔️ Completare la challenge con successo</li>
+        <li>🎥 Documentare la run con video o streaming</li>
+        <li>🚫 Non usare cheat, PKHeX o modifiche esterne</li>
+        <li>🎮 Giocare almeno con lo stile <strong>fisso</strong></li>
+      </ul>
+      <p>Invia la tua run via DM su <a href="https://www.instagram.com/ultras_di.excadrill/" target="_blank">@ultras_di.excadrill</a></p>
+      <div class="pdf-download">
+        <a href="locked_team_hall_of_fame.pdf" download>📄 Scarica la Hall of Fame (documento vuoto per ora)</a>
+      </div>
+      <div class="pdf-download">
+        <button onclick="backToRules()">📜 Torna alle Regole</button>
+      </div>
+    </div>
+
+    <div class="lang-en">
+      <h1>🏆 HALL OF FAME</h1>
+      <p>To be added to the Hall of Fame, you must:</p>
+      <ul>
+        <li>✔️ Successfully complete the challenge</li>
+        <li>🎥 Provide full documentation (video/stream)</li>
+        <li>🚫 No cheat, PKHeX or external tools</li>
+        <li>🎮 Use at least the <strong>SET battle style</strong></li>
+      </ul>
+      <p>Send your run via DM at <a href="https://www.instagram.com/ultras_di.excadrill/" target="_blank">@ultras_di.excadrill</a></p>
+      <div class="pdf-download">
+        <a href="locked_team_hall_of_fame.pdf" download>📄 Download Hall of Fame (currently empty)</a>
+      </div>
+      <div class="pdf-download">
+        <button onclick="backToRules()">📜 Back to Rules</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A" target="_blank" id="support-btn">❤️ Support</a>
+
+  <script>
+    // Funzione per ottenere il valore di un parametro dalla URL
+    function getQueryParam(param) {
+      var urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    
+    // Funzione per cambiare lingua
+    function switchLang(lang) {
+      document.querySelector('.lang-it').classList.remove('active');
+      document.querySelector('.lang-en').classList.remove('active');
+      document.querySelector('.lang-' + lang).classList.add('active');
+    }
+
+    // Gestione dark mode
+    const toggle = document.getElementById("darkModeToggle");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.querySelector('.container').classList.toggle("dark-mode");
+      document.getElementById('main-header').classList.toggle('dark-mode');
+    });
+
+    // La funzione per tornare alle regole reindirizza in base alla lingua corrente
+    function backToRules() {
+      var lang = getQueryParam("lang") || 'it';
+      window.location.href = "locked_team_challenge.html?lang=" + lang;
+    }
+
+    // Al caricamento, se esiste il parametro ?lang=, usa quello; altrimenti default a italiano
+    window.onload = () => {
+      var lang = getQueryParam("lang") || 'it';
+      switchLang(lang);
+    };
+  </script>
+</body>
+</html>
