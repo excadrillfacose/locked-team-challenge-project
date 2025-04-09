@@ -62,8 +62,72 @@
         display: none;
     }
 }
+    #main-header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 60px;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      border-radius: 30px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      z-index: 1000;
+      width: 90%;
+      max-width: 800px;
+      transition: all 0.3s ease;
+    }
+
+    body.dark-mode #main-header {
+      background: #000;
+      box-shadow: 0 0 15px rgba(255,0,0,0.3);
+    }
+
+    #header-title {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #222;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    body.dark-mode #header-title {
+      color: #fff;
+    }
+
+    #darkModeToggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 10px;
+    }
+
+    .lang-switch img {
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: transform 0.2s;
+    }
+
+    .lang-switch img:hover {
+      transform: scale(1.1);
+    }
+
     body {
-    background: linear-gradient(270deg, #fdd100, #2873b7);
+      background: linear-gradient(270deg, #fdd100, #2873b7);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 2rem;
@@ -140,6 +204,7 @@ body.dark-mode {
       border-radius: 10px;
       max-width: 800px;
       box-shadow: 0 0 15px rgb(0, 0, 0);
+      margin-top: 80px; /* Account for fixed header */
     }
 
     .container.dark-mode {
@@ -238,14 +303,17 @@ body.dark-mode h4 {
 
 </head>
 <body>
-  <button id="darkModeToggle" style="position: fixed; top: 20px; left: 20px; z-index: 999;">🌓</button>
+  <header id="main-header">
+    <button id="darkModeToggle">🌓</button>
+    <h1 id="header-title">LOCKED TEAM PROJECT</h1>
+    <div class="lang-switch">
+      <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
+      <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
+    </div>
+  </header>
   <div class="side-gifs">
     <img src="logo.gif" class="side-gif left desktop-only" alt="logo">
 <img src="excadrill.gif" class="side-gif right desktop-only" alt="excadrill">
-  </div>
-  <div class="lang-switch">
-    <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
-    <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
   </div>
   <div class="container">
     <div class="lang-it active">
@@ -518,6 +586,7 @@ If even one of them faints before the League, or you lose the final battle → t
   toggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     document.querySelector('.container').classList.toggle("dark-mode");
+    document.getElementById('main-header').classList.toggle('dark-mode');
   });
 </script>
 </html>
