@@ -8,6 +8,26 @@
   <title>Locked Team Challenge</title>
   <style>
     
+    #support-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff4d4d;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background-color 0.2s ease;
+  z-index: 1000;
+}
+
+#support-btn:hover {
+  background-color: #ff1a1a;
+}
+
 
 .side-gif {
   position: absolute;
@@ -43,7 +63,7 @@
     }
 }
     body {
-    background: linear-gradient(0deg, #fdd100, #2873b7);
+    background: linear-gradient(270deg, #fdd100, #2873b7);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 2rem;
@@ -61,7 +81,7 @@
 
 /* DARK MODE STYLES */
 body.dark-mode {
-  background: linear-gradient(180, #5a4a42, #bd4242);
+  background: linear-gradient(90deg, #5a4a42, #bd4242);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 2rem;
@@ -486,6 +506,12 @@ If even one of them faints before the League, or you lose the final battle → t
 </div>
 
   </div>
+  <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A"  
+   target="_blank" 
+   id="support-btn">
+  ❤️ Support
+</a>
+
 </body>
 <script>
   const toggle = document.getElementById("darkModeToggle");
