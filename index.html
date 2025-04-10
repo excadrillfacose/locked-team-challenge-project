@@ -624,16 +624,14 @@ If even one of them faints before the League, or you lose the final battle → t
 
 <script>
   function openHallOfFame() {
-    // Controlla quale lingua è attualmente attiva
-    var lang;
-    if(document.querySelector('.lang-it.active')) {
-      lang = "it";
-    } else if(document.querySelector('.lang-en.active')) {
-      lang = "en";
-    } else {
-      lang = "it"; // default
-    }
-    window.location.href = "hall_of_fame.html?lang=" + lang;
+    // Save current language and dark mode to localStorage
+    const lang = document.querySelector('.lang-it.active') ? 'it' : 'en';
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    localStorage.setItem('preferredLang', lang);
+    localStorage.setItem('darkMode', isDarkMode);
+    
+    window.location.href = "hall_of_fame.html";
   }
 </script>
 
@@ -657,10 +655,29 @@ If even one of them faints before the League, or you lose the final battle → t
       document.querySelector('.container').classList.toggle("dark-mode");
       document.getElementById('main-header').classList.toggle('dark-mode');
       
+      // Save dark mode state to localStorage
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+      
       setTimeout(() => {
         container.classList.remove("content-shifting");
       }, 300);
     }, 0);
   });
+
+  // Load saved preferences on page load
+  window.onload = () => {
+    // Check URL parameter first, then localStorage, then default to Italian
+    const urlLang = getQueryParam('lang');
+    const savedLang = urlLang || localStorage.getItem('preferredLang') || 'it';
+    switchLang(savedLang);
+    
+    // Set dark mode from localStorage if enabled
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+      document.body.classList.add('dark-mode');
+      document.querySelector('.container').classList.add('dark-mode');
+      document.getElementById('main-header').classList.add('dark-mode');
+    }
+  };
 </script>
 </html>
