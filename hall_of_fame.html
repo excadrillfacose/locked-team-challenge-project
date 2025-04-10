@@ -157,6 +157,63 @@
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+    @media (max-width: 768px) {
+      .desktop-only {
+          display: none;
+      }
+      #header-title {
+          font-size: 1rem;
+          white-space: normal;
+          max-width: 60%;
+          text-align: center;
+      }
+      #main-header {
+          padding: 0 10px;
+          height: 50px;
+          width: 95%;
+      }
+      #darkModeToggle {
+          font-size: 0.9rem;
+          padding: 3px;
+      }
+      .lang-switch {
+          gap: 5px;
+      }
+      .lang-switch img {
+          width: 20px;
+          height: 12px;
+      }
+      .container {
+          padding: 1rem;
+          margin-top: 70px;
+      }
+      h1 {
+          font-size: 1.5rem;
+      }
+      h2 {
+          font-size: 1.2rem;
+      }
+      #support-btn {
+          padding: 8px 12px;
+          font-size: 0.9rem;
+          bottom: 15px;
+          right: 15px;
+      }
+      .pdf-download button {
+          padding: 8px 12px;
+          font-size: 0.9rem;
+      }
+      .hall-of-fame-entry {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+      }
+      .hall-of-fame-entry img {
+          width: 100px;
+          height: 100px;
+      }
+    }
   </style>
 </head>
 <body>
