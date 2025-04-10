@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -654,8 +655,11 @@ If even one of them faints before the League, or you lose the final battle → t
   <button onclick="openHallOfFame()" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #ff4d4d; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
     🏆 Hall of Fame
   </button>
-  <button onclick="window.location.href='team_builder.html'" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #4CAF50; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
+  <button onclick="openTeam()" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #ff4d4d; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
     🛠️ Team Builder
+  </button>
+  <button onclick="openIdeas()" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #ff4d4d; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
+    🏆 Mail
   </button>
 </div>
 
@@ -669,6 +673,26 @@ If even one of them faints before the League, or you lose the final battle → t
     localStorage.setItem('darkMode', isDarkMode);
     
     window.location.href = "hall_of_fame.html";
+  }
+  function openTeam() {
+    // Save current language and dark mode to localStorage
+    const lang = document.querySelector('.lang-it.active') ? 'it' : 'en';
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    localStorage.setItem('preferredLang', lang);
+    localStorage.setItem('darkMode', isDarkMode);
+    
+    window.location.href = "team_builder.html";
+  }
+  function openIdeas() {
+    // Save current language and dark mode to localStorage
+    const lang = document.querySelector('.lang-it.active') ? 'it' : 'en';
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    localStorage.setItem('preferredLang', lang);
+    localStorage.setItem('darkMode', isDarkMode);
+    
+    window.location.href = "ideas.html";
   }
 </script>
 
