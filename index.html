@@ -59,6 +59,30 @@
   cursor: pointer;
   z-index: 999;
 }
+#main-header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 60px;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+  width: 90%;
+  max-width: 800px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+body.dark-mode #main-header {
+  background: #000;
+  box-shadow: 0 0 15px rgba(255,0,0,0.3);
+}
+
 @media (max-width: 768px) {
     .desktop-only {
         display: none;
@@ -70,39 +94,52 @@
         text-align: center;
     }
     #main-header {
-        padding: 0 15px;
+        padding: 0 10px;
+        height: 50px;
+        width: 95%;
     }
     #darkModeToggle {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        padding: 3px;
+    }
+    .lang-switch {
+        gap: 5px;
     }
     .lang-switch img {
-        width: 25px;
-        height: 15px;
+        width: 20px;
+        height: 12px;
+    }
+    .container {
+        padding: 1rem;
+        margin-top: 70px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.2rem;
+    }
+    #support-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        bottom: 15px;
+        right: 15px;
+    }
+    .pdf-download button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .pokemon-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .pokemon-entry {
+        padding: 0.5rem;
+    }
+    .pokemon-entry img {
+        width: 60px;
+        height: 60px;
     }
 }
-    #main-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 60px;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 30px;
-      border-radius: 30px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      z-index: 1000;
-      width: 90%;
-      max-width: 800px;
-      transition: all 0.3s ease;
-    }
-
-    body.dark-mode #main-header {
-      background: #000;
-      box-shadow: 0 0 15px rgba(255,0,0,0.3);
-    }
 
     #header-title {
       margin: 0;
