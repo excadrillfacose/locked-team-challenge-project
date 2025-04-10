@@ -189,7 +189,7 @@
         <a href="locked_team_hall_of_fame.pdf" download>📄 Scarica la Hall of Fame (documento vuoto per ora)</a>
       </div>
       <div class="pdf-download">
-        <button onclick="window.location.href='index.html'">📜 Torna alle Regole</button>
+        <button onclick="backToRules()">📜 Torna alle Regole</button>
       </div>
     </div>
 
@@ -207,7 +207,7 @@
         <a href="locked_team_hall_of_fame.pdf" download>📄 Download Hall of Fame (currently empty)</a>
       </div>
       <div class="pdf-download">
-        <button onclick="window.location.href='index.html'">📜 Back to Rules</button>
+        <button onclick="backToRules()">📜 Back to Rules</button>
       </div>
     </div>
   </div>
@@ -215,6 +215,20 @@
   <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A" target="_blank" id="support-btn">❤️ Support</a>
 
   <script>
+    // Funzione per ottenere il valore di un parametro dalla URL
+    function getQueryParam(param) {
+      var urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    
+    // Funzione per cambiare lingua
+    function switchLang(lang) {
+      document.querySelector('.lang-it').classList.remove('active');
+      document.querySelector('.lang-en').classList.remove('active');
+      document.querySelector('.lang-' + lang).classList.add('active');
+    }
+
+    // Gestione dark mode
     const toggle = document.getElementById("darkModeToggle");
     toggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-mode");
@@ -222,14 +236,15 @@
       document.getElementById('main-header').classList.toggle('dark-mode');
     });
 
-    function switchLang(lang) {
-      document.querySelector('.lang-it').classList.remove('active');
-      document.querySelector('.lang-en').classList.remove('active');
-      document.querySelector('.lang-' + lang).classList.add('active');
+    // La funzione per tornare alla pagina precedente
+    function backToRules() {
+      history.back();
     }
 
+    // Al caricamento, se esiste il parametro ?lang=, usa quello; altrimenti default a italiano
     window.onload = () => {
-      switchLang('it');
+      var lang = getQueryParam("lang") || 'it';
+      switchLang(lang);
     };
   </script>
 </body>
