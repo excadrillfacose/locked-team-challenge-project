@@ -1,0 +1,676 @@
+/* General Styles */
+:root {
+    /* Light Mode Colors */
+    --light-bg-gradient-start: #a8dadc; /* Soft Teal */
+    --light-bg-gradient-end: #457b9d;   /* Muted Blue */
+    --light-header-bg: #ffffff;
+    --light-header-text: #212529;
+    --light-container-bg: #ffffff;
+    --light-text-color: #343a40;
+    --light-heading-color: #1d3557; /* Dark Blue */
+    --light-link-color: #1d3557;
+    --light-link-hover: #457b9d;
+    --light-button-bg: #e63946; /* Muted Red */
+    --light-button-hover: #c1121f;
+    --light-shadow-color: rgba(0, 0, 0, 0.15);
+    --light-border-color: #dee2e6;
+
+    /* Dark Mode Colors */
+    --dark-bg-gradient-start: #2a003a; /* Deep Purple */
+    --dark-bg-gradient-end: #5a189a;   /* Richer Purple */
+    --dark-header-bg: #1a1a1a;
+    --dark-header-text: #f8f9fa;
+    --dark-container-bg: #1a1a1a;
+    --dark-text-color: #e9ecef;
+    --dark-heading-color: #f8f9fa;
+    --dark-link-color: #90e0ef; /* Light Blue */
+    --dark-link-hover: #00b4d8;
+    --dark-button-bg: #e63946; /* Muted Red */
+    --dark-button-hover: #c1121f;
+    --dark-shadow-color: rgba(255, 0, 0, 0.25);
+    --dark-border-color: #495057;
+
+    /* Shared */
+    --border-radius-sm: 8px;
+    --border-radius-md: 15px;
+    --border-radius-lg: 30px;
+    --transition-speed: 0.3s;
+    --shadow-elevation-1: 0 4px 12px var(--shadow-color);
+    --shadow-elevation-2: 0 8px 24px var(--shadow-color);
+}
+
+/* Base Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(270deg, var(--light-bg-gradient-start), var(--light-bg-gradient-end));
+    color: var(--light-text-color);
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    animation: fadeIn 0.8s ease-in-out;
+    position: relative; /* For side gifs */
+}
+
+body.dark-mode {
+    background: linear-gradient(90deg, var(--dark-bg-gradient-start), var(--dark-bg-gradient-end));
+    color: var(--dark-text-color);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--light-heading-color);
+    transition: color var(--transition-speed) ease;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: var(--dark-heading-color);
+}
+
+h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+h2 { font-size: 1.8rem; margin-top: 2rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--light-border-color); }
+body.dark-mode h2 { border-color: var(--dark-border-color); }
+h4 { font-size: 1.1rem; line-height: 1.6; }
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--light-link-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--light-link-hover);
+    text-decoration: underline;
+}
+
+body.dark-mode a {
+    color: var(--dark-link-color);
+}
+
+body.dark-mode a:hover {
+    color: var(--dark-link-hover);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--light-border-color);
+    margin: 2rem 0;
+    transition: border-color var(--transition-speed) ease;
+}
+
+body.dark-mode hr {
+    border-color: var(--dark-border-color);
+}
+
+/* Header */
+#main-header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    background: var(--light-header-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-elevation-1);
+    z-index: 1000;
+    width: 90%;
+    max-width: 800px;
+    transition: background var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+body.dark-mode #main-header {
+    background: var(--dark-header-bg);
+    box-shadow: var(--dark-shadow-color);
+}
+
+#header-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--light-header-text);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    transition: color var(--transition-speed) ease;
+}
+
+body.dark-mode #header-title {
+    color: var(--dark-header-text);
+}
+
+/* Dark Mode Toggle */
+#darkModeToggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    color: var(--light-header-text); /* Default color */
+    transition: color var(--transition-speed) ease, transform 0.2s ease;
+}
+
+body.dark-mode #darkModeToggle {
+    color: var(--dark-header-text); /* Dark mode color */
+}
+
+#darkModeToggle:hover {
+    transform: scale(1.1);
+}
+
+/* Language Switch */
+.lang-switch {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 20px;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+}
+
+.lang-switch img {
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid var(--light-border-color);
+    border-radius: 4px;
+    transition: transform 0.2s, border-color var(--transition-speed) ease;
+}
+
+body.dark-mode .lang-switch img {
+    border-color: var(--dark-border-color);
+}
+
+.lang-switch img:hover {
+    transform: scale(1.1);
+}
+
+/* Main Container */
+.container {
+    background-color: var(--light-container-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius-md);
+    max-width: 800px;
+    box-shadow: var(--shadow-elevation-2);
+    margin-top: 100px; /* Account for fixed header */
+    width: 100%;
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+body.dark-mode .container {
+    background-color: var(--dark-container-bg);
+    box-shadow: var(--dark-shadow-color);
+}
+
+/* Language Specific Content */
+.lang-it, .lang-en {
+    display: none;
+}
+
+.lang-it.active, .lang-en.active {
+    display: block;
+}
+
+/* PDF Download & Action Buttons */
+.pdf-download {
+    margin-top: 2rem;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1rem;
+    justify-content: center;
+}
+
+.pdf-download button,
+.pdf-download a.button { /* Added a.button for consistency */
+    cursor: pointer;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: var(--border-radius-lg);
+    border: none;
+    background-color: var(--light-button-bg);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none; /* For anchor tags */
+    display: inline-flex; /* For icon alignment */
+    align-items: center;
+    gap: 8px;
+}
+
+.pdf-download button:hover,
+.pdf-download a.button:hover {
+    background-color: var(--light-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/* Support Button */
+#support-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--light-button-bg);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius-lg);
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: var(--shadow-elevation-1);
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#support-btn:hover {
+    background-color: var(--light-button-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevation-2);
+}
+
+/* Side Gifs */
+.side-gif {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    z-index: 1;
+    opacity: 0.7; /* Slightly transparent */
+    transition: opacity var(--transition-speed) ease;
+}
+
+.side-gif.left {
+    left: 40px;
+}
+
+.side-gif.right {
+    right: 40px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Specific Styles for Ideas Page */
+.email-suggestion {
+    margin-top: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+textarea {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--light-border-color);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical; /* Allow vertical resizing */
+    transition: border-color var(--transition-speed) ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+body.dark-mode textarea {
+    background-color: #333;
+    color: var(--dark-text-color);
+    border-color: #555;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--light-link-color);
+    box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.2); /* Light blue glow */
+}
+
+body.dark-mode textarea:focus {
+    border-color: var(--dark-link-color);
+    box-shadow: 0 0 0 3px rgba(144, 224, 239, 0.2); /* Light blue glow */
+}
+
+.send-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #28a745; /* Green for send */
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius-lg);
+    font-weight: bold;
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.send-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.thank-you {
+    display: none;
+    color: #ff9800; /* Orange */
+    font-weight: bold;
+    margin-left: 10px;
+    animation: fadeOutIn 3s forwards; /* Animation for thank you message */
+}
+
+@keyframes fadeOutIn {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Specific Styles for Team Builder */
+.tool-container {
+    margin-bottom: 2rem;
+    border: 1px solid var(--light-border-color);
+    border-radius: var(--border-radius-md);
+    padding: 1.5rem;
+    background-color: var(--light-header-bg); /* Lighter background for tool iframes */
+    box-shadow: var(--shadow-elevation-1);
+    transition: all var(--transition-speed) ease;
+}
+
+body.dark-mode .tool-container {
+    background-color: var(--dark-header-bg);
+    border-color: var(--dark-border-color);
+}
+
+.tool-container h2 {
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    text-align: left; /* Align tool titles left */
+}
+
+iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    background-color: white; /* Ensure iframe background is white */
+}
+
+body.dark-mode iframe {
+    background-color: #222; /* Darker background for iframes in dark mode */
+}
+
+/* Specific Styles for Hall of Fame */
+.hall-of-fame-entry {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--light-border-color);
+    border-radius: var(--border-radius-md);
+    background-color: var(--light-header-bg);
+    box-shadow: var(--shadow-elevation-1);
+    transition: all var(--transition-speed) ease;
+}
+
+body.dark-mode .hall-of-fame-entry {
+    background-color: var(--dark-header-bg);
+    border-color: var(--dark-border-color);
+}
+
+.hall-of-fame-entry img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--light-link-color);
+    transition: border-color var(--transition-speed) ease;
+}
+
+body.dark-mode .hall-of-fame-entry img {
+    border-color: var(--dark-link-color);
+}
+
+.hall-of-fame-entry .details {
+    flex-grow: 1;
+}
+
+.hall-of-fame-entry h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    text-align: left;
+}
+
+.hall-of-fame-entry p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+ul li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+ul li::before {
+    content: '✔️'; /* Custom bullet point */
+    color: #28a745; /* Green checkmark */
+    font-size: 1.2em;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+ul li:nth-child(2)::before { content: '🎥'; color: #007bff; } /* Blue camera */
+ul li:nth-child(3)::before { content: '🚫'; color: #dc3545; } /* Red no-entry */
+ul li:nth-child(4)::before { content: '🎮'; color: #6f42c1; } /* Purple gamepad */
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    #main-header {
+        padding: 0 10px;
+        height: 50px;
+        width: 95%;
+        top: 10px;
+    }
+
+    #header-title {
+        font-size: 1rem;
+        white-space: normal;
+        max-width: 60%;
+        text-align: center;
+    }
+
+    #darkModeToggle {
+        font-size: 1.2rem;
+        padding: 3px;
+    }
+
+    .lang-switch {
+        gap: 5px;
+        right: 10px;
+    }
+
+    .lang-switch img {
+        width: 25px;
+        height: 16px;
+    }
+
+    .container {
+        padding: 1.5rem;
+        margin-top: 80px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    .pdf-download button,
+    .pdf-download a.button {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+        width: auto; /* Allow buttons to size naturally */
+    }
+
+    #support-btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .side-gif {
+        display: none; /* Hide side gifs on mobile */
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    /* Ideas Page */
+    textarea {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .send-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    /* Team Builder */
+    iframe {
+        height: 400px;
+    }
+
+    .tool-container {
+        padding: 1rem;
+    }
+
+    /* Hall of Fame */
+    .hall-of-fame-entry {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .hall-of-fame-entry img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .hall-of-fame-entry h3 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .hall-of-fame-entry p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    #main-header {
+        padding: 0 5px;
+        height: 45px;
+    }
+
+    #header-title {
+        font-size: 0.85rem;
+    }
+
+    #darkModeToggle {
+        font-size: 1rem;
+    }
+
+    .lang-switch {
+        gap: 3px;
+        right: 5px;
+    }
+
+    .lang-switch img {
+        width: 20px;
+        height: 13px;
+    }
+
+    .container {
+        padding: 1rem;
+        margin-top: 70px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .pdf-download {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .pdf-download button,
+    .pdf-download a.button {
+        width: 100%;
+        box-sizing: border-box; /* Include padding in width */
+    }
+
+    #support-btn {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+}
