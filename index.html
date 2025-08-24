@@ -1,840 +1,418 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <link rel="icon" type="image/png" href="favicon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Locked Team Challenge</title>
-  <style>
-    
-    #support-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #ff4d4d;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 999px;
-  font-size: 1rem;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  transition: background-color 0.2s ease;
-  z-index: 1000;
-}
-
-#support-btn:hover {
-  background-color: #ff1a1a;
-}
-
-
-.side-gif {
-  position: absolute;
-  top: 250px;
-  transform: translateY(-50%);
-  width: 220px; /* Aumenta la dimensione */
-  z-index: 1;
-}
-
-.side-gif.left {
-  left: 40px; /* più verso il contenuto */
-}
-
-.side-gif.right {
-  right: 40px;
-}
-
-#music-toggle {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 1.2rem;
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: 5px;
-  padding: 0.4rem 0.6rem;
-  cursor: pointer;
-  z-index: 999;
-}
-#main-header {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 60px;
-  background: white;
-  border-radius: 30px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  z-index: 1000;
-  width: 90%;
-  max-width: 800px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 30px;
-}
-
-body.dark-mode #main-header {
-  background: #000;
-  box-shadow: 0 0 15px rgba(255,0,0,0.3);
-}
-
-@media (max-width: 768px) {
-    .desktop-only {
-        display: none;
-    }
-    #header-title {
-        font-size: 1rem;
-        white-space: normal;
-        max-width: 60%;
-        text-align: center;
-    }
-    #main-header {
-        padding: 0 10px;
-        height: 50px;
-        width: 95%;
-    }
-    #darkModeToggle {
-        font-size: 0.9rem;
-        padding: 3px;
-    }
-    .lang-switch {
-        gap: 5px;
-    }
-    .lang-switch img {
-        width: 20px;
-        height: 12px;
-    }
-    .container {
-        padding: 1rem;
-        margin-top: 70px;
-    }
-    h1 {
-        font-size: 1.5rem;
-    }
-    h2 {
-        font-size: 1.2rem;
-    }
-    #support-btn {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-        bottom: 15px;
-        right: 15px;
-    }
-    .pdf-download button {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-    }
-    .pokemon-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .pokemon-entry {
-        padding: 0.5rem;
-    }
-    .pokemon-entry img {
-        width: 60px;
-        height: 60px;
-    }
-}
-
-    #header-title {
-      margin: 0;
-      font-size: 1.5rem;
-      color: #222;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-    }
-
-    body.dark-mode #header-title {
-      color: #fff;
-    }
-
-    #darkModeToggle {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 5px;
-    }
-
-    .lang-switch {
-      display: flex;
-      gap: 10px;
-    }
-
-    .lang-switch img {
-      width: 30px;
-      height: 20px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: transform 0.2s;
-    }
-
-    .lang-switch img:hover {
-      transform: scale(1.1);
-    }
-
-    body {
-      background: linear-gradient(270deg, #fdd100, #2873b7);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      animation: fadeIn 0.5s ease-in-out;
-      color: #000;
-      transition: all 0.6s ease;
-    }
-
-
-.main-container {
-  background-color: white;
-}
-
-/* DARK MODE STYLES */
-body.dark-mode {
-  background: linear-gradient(90deg, #5a4a42, #bd4242);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      animation: fadeIn 0.5s ease-in-out;
-      color: #ffffff;
-      transition: all 0.3s ease;
-  
-}
-
-
-    @keyframes shiftAnimation {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-2px); }
-      100% { transform: translateY(0); }
-    }
-
-    .shifting {
-      animation: shiftAnimation 0.3s ease-in-out;
-    }
-
-    .content-shifting {
-      animation: shiftAnimation 0.3s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .lang-switch {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    display: flex;
-    gap: 10px;
-    z-index: 999;
-  }
-
-  .lang-switch img {
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    transition: transform 0.2s;
-  }
-
-  .lang-switch img:hover {
-    transform: scale(1.1);
-  }
-
-  .lang-it, .lang-en {
-    display: none;
-  }
-
-  .lang-it.active, .lang-en.active {
-    display: block;
-  }
-
-  .pdf-download {
-    text-align: center;
-    margin-top: 2rem;
-  }
-
-    .container {
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 800px;
-      box-shadow: 0 0 15px rgb(0, 0, 0);
-      margin-top: 80px; /* Account for fixed header */
-    }
-
-    .container.dark-mode {
-      background-color: #000000;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 800px;
-      box-shadow: 0 0 15px rgb(255, 0, 0);
-    }
-
-    body.dark-mode a {
-  color: #00aeff;
-}
-
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode h4 {
-  color: #ffffff; /* Imposta il colore del testo a bianco */
-}
-
-    h1, h2 {
-      color: #222;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 0.3rem;
-    }
-
-    h4 {
-      font-size: 1rem;
-      color: #333;
-      margin-top: 1rem;
-      white-space: pre-line;
-    }
-
-    .emoji {
-      font-size: 1.2rem;
-    }
-
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #ccc;
-      margin: 2rem 0;
-    }
-    
-  </style>
-<script>
-  const music = document.getElementById("bg-music");
-  const toggleButton = document.getElementById("music-toggle");
-
-  let isPlaying = true;
-
-  function toggleMusic() {
-    if (isPlaying) {
-      music.pause();
-      toggleButton.textContent = "🔇";
-    } else {
-      music.play();
-      toggleButton.textContent = "🔊";
-    }
-    isPlaying = !isPlaying;
-  }
-
-  function switchLang(lang) {
-    const container = document.querySelector('.container');
-    container.classList.add("shifting");
-    
-    setTimeout(() => {
-      document.querySelector('.lang-it').classList.remove('active');
-      document.querySelector('.lang-en').classList.remove('active');
-      document.querySelector('.lang-' + lang).classList.add('active');
-      
-      setTimeout(() => {
-        container.classList.remove("shifting");
-      }, 300);
-    }, 0);
-  }
-
-  window.onload = () => {
-    switchLang('it'); // default in italiano
-  }
-
-  
-</script>
-
-
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header id="main-header">
-    <button id="darkModeToggle">🌓</button>
+    <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌓</button>
     <h2 id="header-title">LOCKED TEAM PROJECT</h2>
     <div class="lang-switch">
-      <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
-      <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
+      <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')" aria-label="Switch to Italian">
+      <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')" aria-label="Switch to English">
     </div>
   </header>
-  <div class="side-gifs">
-    <img src="logo.gif" class="side-gif left desktop-only" alt="logo">
-<img src="excadrill.gif" class="side-gif right desktop-only" alt="excadrill">
+
+  <div class="side-gifs desktop-only">
+    <img src="logo.gif" class="side-gif left" alt="Locked Team Logo">
+    <img src="excadrill.gif" class="side-gif right" alt="Excadrill">
   </div>
-  <div class="container">
+
+  <main class="container">
     <div class="lang-it active">
-    <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
-    <h4><b>Ideatore:</b>  Gabriele Bertani<br> AKA: <a href=https://www.instagram.com/ultras_di.excadrill/>@ultras_di.excadrill </a></h4>
-    <hr>
+      <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
+      <h4><b>Ideatore:</b> Gabriele Bertani<br> AKA: <a href="https://www.instagram.com/ultras_di.excadrill/" target="_blank" rel="noopener noreferrer">@ultras_di.excadrill</a></h4>
+      <hr>
 
-    <h2>⚔️ OBIETTIVO</h2>
-    <h4>Sconfiggi il Campione della Lega con un team predeterminato.</h4>
+      <h2>⚔️ OBIETTIVO</h2>
+      <p>Sconfiggi il Campione della Lega con un team predeterminato.</p>
 
-    <h2>🧠 FASE DI PREPARAZIONE</h2>
-    <h4>1. Scegli il gioco Pokémon
-Ogni titolo mainline è valido, così come le Rom Hack. Applica le regole adattandole alla versione scelta.
-2. Crea il tuo team definitivo
-• Scegli 6 Pokémon totali (compreso lo starter, che è obbligatorio)
-• Team ideato PRIMA di iniziare la run e NON modificabile
-• Ogni Pokémon deve essere:
- - Catturabile nel gioco scelto prima della prima sfida alla Lega Pokémon
- - Catturato prima di entrare nella Lega
- - No leggendari, mitici o pseudo-leggendari (limite BST under 600)
- - No scambi in-game con NPC
-• Per ogni Pokémon, dichiara la zona precisa in cui lo cercherai (es. Percorso 5, Grotta Diglett, ecc.)
-• non puoi catturare più di un singolo Pokémon, tra plannati e jolly, nello stesso luogo.
-• devi catturare il primo esemplare del Pokémon plannato che incontri nel punto di cattura designato. Se il pokémon viene incontrato prima della zona dichiarata per la cattura NON si può catturare.  
-📌 SPECIES CLAUSE ATTIVA
-Non puoi avere due Pokémon della stessa specie nel team, comprese le forme alternative (es. Rotom, Muk normale e di Alola insieme…)</h4>
+      <h2>🧠 FASE DI PREPARAZIONE</h2>
+      <h4>1. Scegli il gioco Pokémon
+        Ogni titolo mainline è valido, così come le Rom Hack. Applica le regole adattandole alla versione scelta.
+        2. Crea il tuo team definitivo
+        • Scegli 6 Pokémon totali (compreso lo starter, che è obbligatorio)
+        • Team ideato PRIMA di iniziare la run e NON modificabile
+        • Ogni Pokémon deve essere:
+         - Catturabile nel gioco scelto prima della prima sfida alla Lega Pokémon
+         - Catturato prima di entrare nella Lega
+         - No leggendari, mitici o pseudo-leggendari (limite BST under 600)
+         - No scambi in-game con NPC
+        • Per ogni Pokémon, dichiara la zona precisa in cui lo cercherai (es. Percorso 5, Grotta Diglett, ecc.)
+        • non puoi catturare più di un singolo Pokémon, tra plannati e jolly, nello stesso luogo.
+        • devi catturare il primo esemplare del Pokémon plannato che incontri nel punto di cattura designato. Se il pokémon viene incontrato prima della zona dichiarata per la cattura NON si può catturare.
+        📌 SPECIES CLAUSE ATTIVA
+        Non puoi avere due Pokémon della stessa specie nel team, comprese le forme alternative (es. Rotom, Muk normale e di Alola insieme…)</h4>
 
-    <h2>🎮 PRIMA LOTTA COL RIVALE: ESENTE</h2>
-    <h4>La prima battaglia contro il rivale (quella appena ricevuto lo starter) è fuori dalle regole.
-Non conta nessun KO, e non compromette la run.
-È una lotta influenzata da IV e mosse casuali a inizio gioco → inutile vincolarla.</h4>
+      <h2>🎮 PRIMA LOTTA COL RIVALE: ESENTE</h2>
+      <h4>La prima battaglia contro il rivale (quella appena ricevuto lo starter) è fuori dalle regole.
+        Non conta nessun KO, e non compromette la run.
+        È una lotta influenzata da IV e mosse casuali a inizio gioco → inutile vincolarla.</h4>
 
-    <h2>🧭 DIVISIONE DELLA REGIONE</h2>
-    <h4>Dividi la regione in 5 macro-zone per ottenere i Pokémon Jolly.
-Le macro-zone possono essere blocchi interi di mappa (es. “da città X a città Y”).</h4>
+      <h2>🧭 DIVISIONE DELLA REGIONE</h2>
+      <h4>Dividi la regione in 5 macro-zone per ottenere i Pokémon Jolly.
+        Le macro-zone possono essere blocchi interi di mappa (es. “da città X a città Y”).</h4>
 
-    <h2>👣 INIZIO DELLA RUN</h2>
-    <h4>1. Prendi lo Starter
-Lo starter deve essere uno dei membri del team ufficiale.
-2. Cattura il Pokémon l’Accompagnatore
-• Appena raggiungi la prima zona con selvatici catturabili, cattura il primo Pokémon che incontri
-• Questo è il tuo Pokémon Accompagnatore:
- - Va liberato a priori dopo aver ottenuto la seconda medaglia
- - Non va dichiarato prima
- - Se va KO → non compromette la run, ma non può più essere usato
- - Va liberato quando viene catturato il secondo membro prestabilito del team.
- - Va liberato quando viene catturato il primo Jolly.</h4>
+      <h2>👣 INIZIO DELLA RUN</h2>
+      <h4>1. Prendi lo Starter
+        Lo starter deve essere uno dei membri del team ufficiale.
+        2. Cattura il Pokémon l’Accompagnatore
+        • Appena raggiungi la prima zona con selvatici catturabili, cattura il primo Pokémon che incontri
+        • Questo è il tuo Pokémon Accompagnatore:
+         - Va liberato a priori dopo aver ottenuto la seconda medaglia
+         - Non va dichiarato prima
+         - Se va KO → non compromette la run, ma non può più essere usato
+         - Va liberato quando viene catturato il secondo membro prestabilito del team.
+         - Va liberato quando viene catturato il primo Jolly.</h4>
 
-    <h2>🧱 REGOLE DEI POKÉMON DEL TEAM</h2>
-    <h4>✅ Puoi:
-• Usarli liberamente
-• Allenarli fino al Level Cap, che corrisponde al livello del Pokémon con il livello più alto del Capopalestra o del Campione
-• Superare il level cap durante la battaglia con il boss che setta il cap stesso è permesso
-❌ Regole:
-• Se un membro del team va KO prima della Lega → run fallita
-• Durante la Lega Pokémon:
- - Se un membro muore → non può più essere usato
- - Vietato rianimarlo in qualsiasi modo
-• Nessun altro Pokémon può rimpiazzare un membro ufficiale alla Lega, neanche un Jolly</h4>
+      <h2>🧱 REGOLE DEI POKÉMON DEL TEAM</h2>
+      <h4>✅ Puoi:
+        • Usarli liberamente
+        • Allenarli fino al Level Cap, che corrisponde al livello del Pokémon con il livello più alto del Capopalestra o del Campione
+        • Superare il level cap durante la battaglia con il boss che setta il cap stesso è permesso
+        ❌ Regole:
+        • Se un membro del team va KO prima della Lega → run fallita
+        • Durante la Lega Pokémon:
+         - Se un membro muore → non può più essere usato
+         - Vietato rianimarlo in qualsiasi modo
+        • Nessun altro Pokémon può rimpiazzare un membro ufficiale alla Lega, neanche un Jolly</h4>
 
-    <h2>🃏 POKÉMON JOLLY</h2>
-    <h4>I Jolly sono Pokémon bonus, limitati e sacrificabili.
-💡 Come ottenerli:
-• Hai diritto a 1 Jolly per ogni macro-zona
-• Per ogni Jolly devi:
- - Scegliere una zona precisa all’interno della macro-zona (es. “Percorso 9”, “Bosco Petalo”, ecc.)
- - Catturare il primo Pokémon che incontri lì
- - È permesso fare repel-trick.
-📜 Regole:
-• Ogni Jolly può partecipare a massimo 3 battaglie
- - Se entra in campo → conta come una battaglia
- - Se resta nel team senza entrare → non conta
- - Anche i wild encounter contano come battaglie in caso entrasse in campo
-• Dopo la terza battaglia → devi liberarlo
-• Se va KO → è perso, ma la run continua
-• Può superare il level cap di 1 livello
-• Non può sostituire membri ufficiali alla Lega</h4>
+      <h2>🃏 POKÉMON JOLLY</h2>
+      <h4>I Jolly sono Pokémon bonus, limitati e sacrificabili.
+        💡 Come ottenerli:
+        • Hai diritto a 1 Jolly per ogni macro-zona
+        • Per ogni Jolly devi:
+         - Scegliere una zona precisa all’interno della macro-zona (es. “Percorso 9”, “Bosco Petalo”, ecc.)
+         - Catturare il primo Pokémon che incontri lì
+         - È permesso fare repel-trick.
+        📜 Regole:
+        • Ogni Jolly può partecipare a massimo 3 battaglie
+         - Se entra in campo → conta come una battaglia
+         - Se resta nel team senza entrare → non conta
+         - Anche i wild encounter contano come battaglie in caso entrasse in campo
+        • Dopo la terza battaglia → devi liberarlo
+        • Se va KO → è perso, ma la run continua
+        • Può superare il level cap di 1 livello
+        • Non può sostituire membri ufficiali alla Lega</h4>
 
-    <h2>🔒 DIVIETI E VINCOLI</h2>
-    <h4>❌ Vietato:
-• Grindare → puoi salire di livello solo tramite:
- - Caramelle Rare (puoi dartene 999 a inizio run e in caso ripristinarle) o lotte con allenatori
-• Usare strumenti in battaglia dalla borsa
-• Usare strumenti EV (Proteine, Zinco, ecc.)
-• Usare:
- - Choice Items
- - Mega Evoluzioni
- - Z-Moves
- - Dynamax
- - Teracristal
- - Bijou
- - Revival Blessing (mossa bannata)
-✅ Consentito:
-• Curare i Pokémon FUORI dalla battaglia con pozioni e strumenti
-• Usare MT/MN e cambiare moveset
- - MT considerate consumabili anche dopo Gen 5
- - Vietato farmarle al Casinò o simili
-• Usare strumenti assegnabili: Bacche, Carbonella, Assorbisfera, Evolcondensa ecc…
-• Cambiare abilità con Capsule, se disponibili nel gioco</h4>
+      <h2>🔒 DIVIETI E VINCOLI</h2>
+      <h4>❌ Vietato:
+        • Grindare → puoi salire di livello solo tramite:
+         - Caramelle Rare (puoi dartene 999 a inizio run e in caso ripristinarle) o lotte con allenatori
+        • Usare strumenti in battaglia dalla borsa
+        • Usare strumenti EV (Proteine, Zinco, ecc.)
+        • Usare:
+         - Choice Items
+         - Mega Evoluzioni
+         - Z-Moves
+         - Dynamax
+         - Teracristal
+         - Bijou
+         - Revival Blessing (mossa bannata)
+        ✅ Consentito:
+        • Curare i Pokémon FUORI dalla battaglia con pozioni e strumenti
+        • Usare MT/MN e cambiare moveset
+         - MT considerate consumabili anche dopo Gen 5
+         - Vietato farmarle al Casinò o simili
+        • Usare strumenti assegnabili: Bacche, Carbonella, Assorbisfera, Evolcondensa ecc…
+        • Cambiare abilità con Capsule, se disponibili nel gioco</h4>
 
-<h2>💻 CHEAT E MODIFICHE</h2>
-    <h4>✅ È permesso:
- • Givvarsi a inizio run:
- • 999 Caramelle Rare    
- • 20 Poké Ball  
- • 3 Velox Ball   
- • 10 Repellenti normali
-Durante la run, è consentito usare i cheat solo per:   
- • Ottenere Caramelle Rare
- • Ottenere Funi di Fuga
-In caso di softlock involontario, è permesso usare un cheat per ottenere un Pokémon o uno strumento utile a risolvere la situazione.
-⚠️ Deve essere liberato o venduto subito dopo.
-      
-❌ Non è permesso:
- • Modificare: IVs, EVs, Natura, Amicizia, Sesso, Livello, Mosse 
- • Givvarsi strumenti non elencati sopra
- • Givvarsi MT/MN o strumenti legati alla progressione prima del momento previsto in game</h4>
+      <h2>💻 CHEAT E MODIFICHE</h2>
+      <h4>
+        ✅ È permesso:
+        • Givvarsi a inizio run:
+        • 999 Caramelle Rare
+        • 20 Poké Ball
+        • 3 Velox Ball
+        • 10 Repellenti normali
+        Durante la run, è consentito usare i cheat solo per:
+        • Ottenere Caramelle Rare
+        • Ottenere Funi di Fuga
+        In caso di softlock involontario, è permesso usare un cheat per ottenere un Pokémon o uno strumento utile a risolvere la situazione.
+        ⚠️ Deve essere liberato o venduto subito dopo.
 
- <h2>🧾 INFO AGGIUNTIVE SULLA RUN</h2>
- <h4>
-  • Nei giochi senza Palestre (es. Alola), ogni Kahuna equivale a 2 Palestre.
-  • L’Accompagnatore va liberato dopo il primo Kahuna.
-  • Se il primo incontro del primo percorso è scriptato (es. Grubbin ad Alola), sarà lui il Pokémon Accompagnatore.
-  • Le chain SOS e le lotte a sciame (Hordes) sono permesse.
-  • Sono permessi i glitch solo se causati da bug interni del gioco (es. Rage Glitch in HGSS con Ditto).
-  • ❌ No glitch attivati con cheat esterni.
- </h4>
- 
- <h2>⚠️ LIMITAZIONI SUI POKÉMON</h2>
- <h4>
- ❌ Non sono permessi:
-  • Scambi con altri giochi o NPC (evoluzioni tramite scambio bannate).
-  • Evoluzioni vincolate al sesso: non si può cercare il sesso desiderato. 
-  in caso si cercasse un pokémon che si evolve tramite sesso (es. Salandit -> Salazzle) si tiene il primo Pokémon 
-  trovato nella zona indicata (in caso apparisse come primo esemplare un Salandit maschio sarà lui a dover essere catturato).
-  • Slaking e Shedinja bannati.
- </h4>
- 
- <h2>📉 STRATEGIE E MOSSE</h2>
- <h4>
- ✅ È permesso:
-  • Usare mosse di set-up (es. Danza Spada, Calmamente) solo se apprese per livello.
- ❌ Non è permesso:
-  • Insegnare mosse di set-up tramite MT o Tutor.
-  • Usare mosse che aumentano l'elusione (es. Doppieteam, Minimizzato).
- </h4>
+        ❌ Non è permesso:
+        • Modificare: IVs, EVs, Natura, Amicizia, Sesso, Livello, Mosse
+        • Givvarsi strumenti non elencati sopra
+        • Givvarsi MT/MN o strumenti legati alla progressione prima del momento previsto in game</h4>
 
-    <h2>🏁 CONDIZIONE DI VITTORIA</h2>
-    <h4>Sconfiggi il Campione della Lega con i 6 Pokémon scelti all’inizio.
-Se anche solo uno muore prima della Lega, o perdi la sfida contro la Lega → run fallita.</h4>
+      <h2>🧾 INFO AGGIUNTIVE SULLA RUN</h2>
+      <h4>
+        • Nei giochi senza Palestre (es. Alola), ogni Kahuna equivale a 2 Palestre.
+        • L’Accompagnatore va liberato dopo il primo Kahuna.
+        • Se il primo incontro del primo percorso è scriptato (es. Grubbin ad Alola), sarà lui il Pokémon Accompagnatore.
+        • Le chain SOS e le lotte a sciame (Hordes) sono permesse.
+        • Sono permessi i glitch solo se causati da bug interni del gioco (es. Rage Glitch in HGSS con Ditto).
+        • ❌ No glitch attivati con cheat esterni.
+      </h4>
 
-    <h2>🔥 MODALITÀ HARDCORE (opzionale)</h2>
-    <h4>• Se un Jolly muore → run persa
-• I Jolly non possono superare il level cap
-• Usare lo stile "fisso"</h4>
+      <h2>⚠️ LIMITAZIONI SUI POKÉMON</h2>
+      <h4>
+        ❌ Non sono permessi:
+        • Scambi con altri giochi o NPC (evoluzioni tramite scambio bannate).
+        • Evoluzioni vincolate al sesso: non si può cercare il sesso desiderato.
+        in caso si cercasse un pokémon che si evolve tramite sesso (es. Salandit -> Salazzle) si tiene il primo Pokémon
+        trovato nella zona indicata (in caso apparisse come primo esemplare un Salandit maschio sarà lui a dover essere catturato).
+        • Slaking e Shedinja bannati.
+      </h4>
 
-    <h2>🔧 HM SLAVE & ALTRO</h2>
-    <h4>⚙️ Gli HM Slave sono permessi, ma:
-• Usabili solo per le MN (Taglio, Surf, Forza, ecc.)
-• Non possono scendere in campo in nessuna battaglia
-• Non contano come Jolly o membri del team
-• Devono restare passivi nel box o nel party</h4>
-<div class="pdf-download">
-  <a href="locked_team_challenge.pdf" download>Scarica PDF</a>
-</div>
-<h2>🔧 Tools & Link Utili</h2>
-<ul>
-  <li><a href="https://www.kinglercalc.com/" target="_blank">Calcolatore giochi valilla – KinglerCalc</a></li>
-  <li><a href="https://nuzlocke.app/" target="_blank">Nuzlocke Tracker </a></li>
-</ul>
-<p><strong>Consiglio:</strong> 
-  Inizia con un gioco vanilla. Una volta che ti senti sicuro, prova Emerald Imperium, Radical Red, Run & Bun, Unbound, Blaze Black, Volt White, Blazing Emerald, Renegade Platinum o altri hack ROM.</p>
+      <h2>📉 STRATEGIE E MOSSE</h2>
+      <h4>
+        ✅ È permesso:
+        • Usare mosse di set-up (es. Danza Spada, Calmamente) solo se apprese per livello.
+        ❌ Non è permesso:
+        • Insegnare mosse di set-up tramite MT o Tutor.
+        • Usare mosse che aumentano l'elusione (es. Doppieteam, Minimizzato).
+      </h4>
 
-</div>
-<div class="lang-en">
-  <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
-  <h4><b>Creator:</b> Gabriele Bertani<br>AKA: <a href=https://www.instagram.com/ultras_di.excadrill/>@ultras_di.excadrill </a></h4>
-  <hr>
+      <h2>🏁 CONDIZIONE DI VITTORIA</h2>
+      <h4>Sconfiggi il Campione della Lega con i 6 Pokémon scelti all’inizio.
+        Se anche solo uno muore prima della Lega, o perdi la sfida contro la Lega → run fallita.</h4>
 
-  <h2>⚔️ GOAL</h2>
-  <h4>Defeat the League Champion with a pre-built team, without ever breaking the rules.</h4>
+      <h2>🔥 MODALITÀ HARDCORE (opzionale)</h2>
+      <h4>• Se un Jolly muore → run persa
+        • I Jolly non possono superare il level cap
+        • Usare lo stile "fisso"</h4>
 
-  <h2>🧠 PREPARATION PHASE</h2>
-  <h4>1. Choose a Pokémon game  
-Any mainline title or ROM Hack is allowed. Apply the rules based on your chosen version.  
-2. Create your final team  
-• Pick 6 Pokémon total (your starter must be one of them)  
-• Team must be set BEFORE starting the run and CANNOT be changed  
-• Each Pokémon must be:  
- - Obtainable in the game before the first Pokémon League battle  
- - Caught before entering the League  
- - No legendaries, mythicals, or pseudo-legendaries (limit: BST under 600)  
- - No in-game trades with NPCs  
-• For each Pokémon, specify the exact area you plan to catch it (e.g., Route 5, Diglett Cave, etc.)  
-• You can’t catch more than one Pokémon (main or jolly) in the same location  
-• You must catch the **first** specimen of the planned Pokémon you encounter in its designated area.  
- If you find it before that area → you can’t catch it.  
+      <h2>🔧 HM SLAVE & ALTRO</h2>
+      <h4>⚙️ Gli HM Slave sono permessi, ma:
+        • Usabili solo per le MN (Taglio, Surf, Forza, ecc.)
+        • Non possono scendere in campo in nessuna battaglia
+        • Non contano come Jolly o membri del team
+        • Devono restare passivi nel box o nel party</h4>
+      <div class="pdf-download">
+        <a href="locked_team_challenge.pdf" download class="button">
+          <span class="emoji">📄</span> Scarica PDF
+        </a>
+      </div>
+      <h2>🔧 Tools & Link Utili</h2>
+      <ul>
+        <li><a href="https://www.kinglercalc.com/" target="_blank" rel="noopener noreferrer">Calcolatore giochi valilla – KinglerCalc</a></li>
+        <li><a href="https://nuzlocke.app/" target="_blank" rel="noopener noreferrer">Nuzlocke Tracker </a></li>
+      </ul>
+      <p><strong>Consiglio:</strong>
+        Inizia con un gioco vanilla. Una volta che ti senti sicuro, prova Emerald Imperium, Radical Red, Run & Bun, Unbound, Blaze Black, Volt White, Blazing Emerald, Renegade Platinum o altri hack ROM.</p>
+    </div>
 
-📌 SPECIES CLAUSE ACTIVE  
-You cannot have two Pokémon of the same species, including alternate forms (e.g., Rotom, Muk and Alolan Muk).</h4>
+    <div class="lang-en">
+      <h1>🛡️ LOCKED TEAM CHALLENGE 🛡️</h1>
+      <h4><b>Creator:</b> Gabriele Bertani<br>AKA: <a href="https://www.instagram.com/ultras_di.excadrill/" target="_blank" rel="noopener noreferrer">@ultras_di.excadrill</a></h4>
+      <hr>
 
-  <h2>🎮 FIRST RIVAL BATTLE: EXEMPT</h2>
-  <h4>The very first battle against your rival (right after receiving your starter) is not bound by the rules.  
-Any KOs don’t count and won’t ruin your run.  
-It’s affected by RNG (IVs, random moves) → no point restricting it.</h4>
+      <h2>⚔️ GOAL</h2>
+      <h4>Defeat the League Champion with a pre-built team, without ever breaking the rules.</h4>
 
-  <h2>🧭 REGION SPLIT</h2>
-  <h4>Divide the map into 5 macro-areas to earn Jolly Pokémon.  
-Each macro-area can include large parts of the region (e.g., “from city X to city Y”).</h4>
+      <h2>🧠 PREPARATION PHASE</h2>
+      <h4>1. Choose a Pokémon game
+        Any mainline title or ROM Hack is allowed. Apply the rules based on your chosen version.
+        2. Create your final team
+        • Pick 6 Pokémon total (your starter must be one of them)
+        • Team must be set BEFORE starting the run and CANNOT be changed
+        • Each Pokémon must be:
+         - Obtainable in the game before the first Pokémon League battle
+         - Caught before entering the League
+         - No legendaries, mythicals, or pseudo-legendaries (limit: BST under 600)
+         - No in-game trades with NPCs
+        • For each Pokémon, specify the exact area you plan to catch it (e.g., Route 5, Diglett Cave, etc.)
+        • You can’t catch more than one Pokémon (main or jolly) in the same location
+        • You must catch the <strong>first</strong> specimen of the planned Pokémon you encounter in its designated area.
+         If you find it before that area → you can’t catch it.
 
-  <h2>👣 STARTING THE RUN</h2>
-  <h4>1. Pick your Starter  
-The starter must be one of your official team members.  
-2. Catch your Companion Pokémon  
-• As soon as you reach the first area with wild Pokémon, catch the first one you encounter  
-• This becomes your Companion Pokémon:  
- - Must be released after earning the 2nd badge  
- - Does not need to be declared beforehand  
- - If it faints → run continues, but it can’t be used anymore  
- - Must be released once you catch your second team member  
- - Must be released once you catch your first Jolly</h4>
+        📌 SPECIES CLAUSE ACTIVE
+        You cannot have two Pokémon of the same species, including alternate forms (e.g., Rotom, Muk and Alolan Muk).</h4>
 
-  <h2>🧱 MAIN TEAM RULES</h2>
-  <h4>✅ You CAN:  
-• Use them freely  
-• Train up to the Level Cap (same as the highest-level Pokémon of the next Gym Leader or Champion)  
-• Exceed the level cap DURING the boss battle is allowed  
+      <h2>🎮 FIRST RIVAL BATTLE: EXEMPT</h2>
+      <h4>The very first battle against your rival (right after receiving your starter) is not bound by the rules.
+        Any KOs don’t count and won’t ruin your run.
+        It’s affected by RNG (IVs, random moves) → no point restricting it.</h4>
 
-❌ Rules:  
-• If a team member faints before the League → run is lost  
-• During the Pokémon League:  
- - If one dies → it can’t be used again  
- - Reviving in any way is forbidden  
-• You cannot replace a dead member with anyone, not even a Jolly</h4>
+      <h2>🧭 REGION SPLIT</h2>
+      <h4>Divide the map into 5 macro-areas to earn Jolly Pokémon.
+        Each macro-area can include large parts of the region (e.g., “from city X to city Y”).</h4>
 
-  <h2>🃏 JOLLY POKÉMON</h2>
-  <h4>Jollies are limited, bonus Pokémon that you can sacrifice.  
+      <h2>👣 STARTING THE RUN</h2>
+      <h4>1. Pick your Starter
+        The starter must be one of your official team members.
+        2. Catch your Companion Pokémon
+        • As soon as you reach the first area with wild Pokémon, catch the first one you encounter
+        • This becomes your Companion Pokémon:
+         - Must be released after earning the 2nd badge
+         - Does not need to be declared beforehand
+         - If it faints → run continues, but it can’t be used anymore
+         - Must be released once you catch your second team member
+         - Must be released once you catch your first Jolly</h4>
 
-💡 How to get them:  
-• You earn 1 Jolly per macro-area  
-• For each Jolly you must:  
- - Choose a specific zone within the macro-area (e.g., “Route 9”, “Petalburg Woods”)  
- - Catch the first Pokémon you encounter there  
- - Repel trick is allowed  
+      <h2>🧱 MAIN TEAM RULES</h2>
+      <h4>✅ You CAN:
+        • Use them freely
+        • Train up to the Level Cap (same as the highest-level Pokémon of the next Gym Leader or Champion)
+        • Exceed the level cap DURING the boss battle is allowed
 
-📜 Rules:  
-• Each Jolly can participate in up to 3 battles  
- - If it enters the field → it counts  
- - If it stays in the team but doesn’t battle → it doesn’t count  
- - Wild battles also count if it enters  
-• After the 3rd battle → it must be released  
-• If it dies → it’s lost, but the run continues  
-• Can go 1 level above the level cap  
-• Cannot replace official team members during the League</h4>
+        ❌ Rules:
+        • If a team member faints before the League → run is lost
+        • During the Pokémon League:
+         - If one dies → it can’t be used again
+         - Reviving in any way is forbidden
+        • You cannot replace a dead member with anyone, not even a Jolly</h4>
 
-  <h2>🔒 BANS & RESTRICTIONS</h2>
-  <h4>❌ Banned:  
-• Grinding → you can only level up via:  
- - Rare Candies (you can give yourself 999 at the start and refill later if needed)  
- - Trainer battles  
-• Using items from the bag during battle  
-• EV-enhancing items (Protein, Zinc, etc.)  
-• Using:  
- - Choice Items  
- - Mega Evolution  
- - Z-Moves  
- - Dynamax  
- - Terastallization  
- - Bijou  
- - Revival Blessing (move is banned)  
+      <h2>🃏 JOLLY POKÉMON</h2>
+      <h4>Jollies are limited, bonus Pokémon that you can sacrifice.
 
-✅ Allowed:  
-• Healing Pokémon OUTSIDE of battle with items  
-• Teaching moves via TMs/HMs and changing movesets  
- - TMs are treated as consumables, even post-Gen 5  
- - You can’t farm them in casinos or similar places  
-• Held items like Berries, Charcoal, Life Orb, Eviolite, etc.  
-• Using Ability Capsules if available</h4>
+        💡 How to get them:
+        • You earn 1 Jolly per macro-area
+        • For each Jolly you must:
+         - Choose a specific zone within the macro-area (e.g., “Route 9”, “Petalburg Woods”)
+         - Catch the first Pokémon you encounter there
+         - Repel trick is allowed
 
-<h2>💻 CHEATS & MODIFICATIONS</h2>
-<h4>
-✅ Allowed:
- • At the start of the run, you can give yourself:
- • 999 Rare Candies
- • 20 Poké Balls
- • 3 Quick Balls
- • 10 regular Repels
-During the run, you can only cheat for:
- • Rare Candies
- • Escape Ropes
-If you get softlocked, you're allowed to cheat in a Pokémon or item to fix the issue.
-⚠️ Must be released or sold right after.
-❌ Not allowed:
- • Modifying IVs, EVs, Nature, Friendship, Gender, Level, Moves
- • Giving yourself any items not listed above
- • Getting TMs/HMs or progression items before their intended moment in the game
-</h4>
+        📜 Rules:
+        • Each Jolly can participate in up to 3 battles
+         - If it enters the field → it counts
+         - If it stays in the team but doesn’t battle → it doesn’t count
+         - Wild battles also count if it enters
+        • After the 3rd battle → it must be released
+        • If it dies → it’s lost, but the run continues
+        • Can go 1 level above the level cap
+        • Cannot replace official team members during the League</h4>
 
-<h2>🧾 EXTRA GAME INFO</h2>
-<h4>
- • In games without Gyms (like Alola), each Kahuna counts as 2 Gyms.
- • You must release the Companion after the first Kahuna.
- • If the first route encounter is scripted (like Grubbin in Alola), you are NOT allowed to search for
- another companion Pokémon.
- • SOS chains and Horde battles are allowed.
- • Glitches are allowed only if caused by internal game bugs (e.g., Rage Glitch in HGSS with Ditto).
- • ❌ No glitches activated by external cheats.
-</h4>
+      <h2>🔒 BANS & RESTRICTIONS</h2>
+      <h4>❌ Banned:
+        • Grinding → you can only level up via:
+         - Rare Candies (you can give yourself 999 at the start and refill later if needed)
+         - Trainer battles
+        • Using items from the bag during battle
+        • EV-enhancing items (Protein, Zinc, etc.)
+        • Using:
+         - Choice Items
+         - Mega Evolution
+         - Z-Moves
+         - Dynamax
+         - Terastallization
+         - Bijou
+         - Revival Blessing (move is banned)
 
-<h2>⚠️ POKÉMON RESTRICTIONS</h2>
-<h4>
-❌ Not allowed:
- • Trading with other games or NPCs (trade evolutions are banned).
- • Gender-locked evolutions: you can't hunt for the right gender.
- • You must keep the first Pokémon you find in the declared area, even if not the needed gender for
- the evolution (e.g., male Salandit found first = mandatory to catch it, cannot search a female Salandit).
- • Slaking and Shedinja are banned.
-</h4>
+        ✅ Allowed:
+        • Healing Pokémon OUTSIDE of battle with items
+        • Teaching moves via TMs/HMs and changing movesets
+         - TMs are treated as consumables, even post-Gen 5
+         - You can’t farm them in casinos or similar places
+        • Held items like Berries, Charcoal, Life Orb, Eviolite, etc.
+        • Using Ability Capsules if available</h4>
 
-<h2>📉 STRATEGIES & MOVES</h2>
-<h4>
-✅ Allowed:
- • Set-up moves (like Swords Dance, Calm Mind) only if learned by level-up.
-❌ Not allowed:
- • Teaching set-up moves via TM or Tutor.
- • Using moves that raise evasiveness (like Double Team, Minimize).
-</h4>
+      <h2>💻 CHEATS & MODIFICATIONS</h2>
+      <h4>
+        ✅ Allowed:
+        • At the start of the run, you can give yourself:
+        • 999 Rare Candies
+        • 20 Poké Balls
+        • 3 Quick Balls
+        • 10 regular Repels
+        During the run, you can only cheat for:
+        • Rare Candies
+        • Escape Ropes
+        If you get softlocked, you're allowed to cheat in a Pokémon or item to fix the issue.
+        ⚠️ Must be released or sold right after.
+        ❌ Not allowed:
+        • Modifying IVs, EVs, Nature, Friendship, Gender, Level, Moves
+        • Giving yourself any items not listed above
+        • Getting TMs/HMs or progression items before their intended moment in the game
+      </h4>
 
-  <h2>🏁 WIN CONDITION</h2>
-  <h4>Defeat the Pokémon League Champion using the same 6 Pokémon chosen at the beginning.  
-If even one of them faints before the League, or you lose the final battle → the run is lost.</h4>
+      <h2>🧾 EXTRA GAME INFO</h2>
+      <h4>
+        • In games without Gyms (like Alola), each Kahuna counts as 2 Gyms.
+        • You must release the Companion after the first Kahuna.
+        • If the first route encounter is scripted (like Grubbin in Alola), you are NOT allowed to search for
+        another companion Pokémon.
+        • SOS chains and Horde battles are allowed.
+        • Glitches are allowed only if caused by internal game bugs (e.g., Rage Glitch in HGSS with Ditto).
+        • ❌ No glitches activated by external cheats.
+      </h4>
 
-  <h2>🔥 HARDCORE MODE (optional)</h2>
-  <h4>• If a Jolly dies → the run is lost  
-• Jollies can’t go over the level cap
-• Enable the "set" style</h4>
+      <h2>⚠️ POKÉMON RESTRICTIONS</h2>
+      <h4>
+        ❌ Not allowed:
+        • Trading with other games or NPCs (trade evolutions are banned).
+        • Gender-locked evolutions: you can't hunt for the right gender.
+        • You must keep the first Pokémon you find in the declared area, even if not the needed gender for
+        the evolution (e.g., male Salandit found first = mandatory to catch it, cannot search a female Salandit).
+        • Slaking and Shedinja are banned.
+      </h4>
 
-  <h2>🔧 HM SLAVES & MORE</h2>
-  <h4>⚙️ HM Slaves are allowed, but:  
-• They can only be used to apply HMs (Cut, Surf, Strength, etc.)  
-• They must NEVER enter battle  
-• They don’t count as Jollys or team members  
-• Must stay in the box or party but inactive</h4>
-<div class="pdf-download">
-  <a href="locked_team_challenge_eg.pdf" download>Download PDF</a>
-</div>
-<h2>🔧 Tools & Useful Links</h2>
-<ul>
-  <li><a href="https://www.kinglercalc.com/" target="_blank">Vanilla Damage Calculator – KinglerCalc</a></li>
-  <li><a href="https://nuzlocke.app/" target="_blank">Nuzlocke Tracker for Vanilla & ROM Hacks</a></li>
-</ul>
-<p><strong>Recommended:</strong> Start on a vanilla game. Once confident, try Emerald Imperium, Radical Red, Run & Bun, Unbound, Blaze Black, Volt White, Blazing Emerald, Renegade Platinum or other ROM hacks.</p>
+      <h2>📉 STRATEGIES & MOVES</h2>
+      <h4>
+        ✅ Allowed:
+        • Set-up moves (like Swords Dance, Calm Mind) only if learned by level-up.
+        ❌ Not allowed:
+        • Teaching set-up moves via TM or Tutor.
+        • Using moves that raise evasiveness (like Double Team, Minimize).
+      </h4>
 
-</div>
-<div class="pdf-download" style="display: flex; gap: 1rem; justify-content: center;">
-  <button onclick="openHallOfFame()" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #ff4d4d; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
-    🏆 Hall of Fame
-  </button>
-  <button onclick="openTeam()" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #ff4d4d; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
-    🛠️ Team Builder
-  </button>
-  <button onclick="openIdeas()" style="cursor: pointer; padding: 10px 16px; font-size: 1rem; border-radius: 999px; border: none; background-color: #ff4d4d; color: white; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.3); transition: background-color 0.2s ease;">
-    🏆 Mail
-  </button>
-</div>
+      <h2>🏁 WIN CONDITION</h2>
+      <h4>Defeat the Pokémon League Champion using the same 6 Pokémon chosen at the beginning.
+        If even one of them faints before the League, or you lose the final battle → the run is lost.</h4>
 
-<script>
-  function openHallOfFame() {
-    // Save current language and dark mode to localStorage
-    const lang = document.querySelector('.lang-it.active') ? 'it' : 'en';
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    
-    localStorage.setItem('preferredLang', lang);
-    localStorage.setItem('darkMode', isDarkMode);
-    
-    window.location.href = "hall_of_fame.html";
-  }
-  function openTeam() {
-    // Save current language and dark mode to localStorage
-    const lang = document.querySelector('.lang-it.active') ? 'it' : 'en';
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    
-    localStorage.setItem('preferredLang', lang);
-    localStorage.setItem('darkMode', isDarkMode);
-    
-    window.location.href = "team_builder.html";
-  }
-  function openIdeas() {
-    // Save current language and dark mode to localStorage
-    const lang = document.querySelector('.lang-it.active') ? 'it' : 'en';
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    
-    localStorage.setItem('preferredLang', lang);
-    localStorage.setItem('darkMode', isDarkMode);
-    
-    window.location.href = "ideas.html";
-  }
-</script>
+      <h2>🔥 HARDCORE MODE (optional)</h2>
+      <h4>• If a Jolly dies → the run is lost
+        • Jollies can’t go over the level cap
+        • Enable the "set" style</h4>
 
+      <h2>🔧 HM SLAVES & MORE</h2>
+      <h4>⚙️ HM Slaves are allowed, but:
+        • They can only be used to apply HMs (Cut, Surf, Strength, etc.)
+        • They must NEVER enter battle
+        • They don’t count as Jollys or team members
+        • Must stay in the box or party but inactive</h4>
+      <div class="pdf-download">
+        <a href="locked_team_challenge_eg.pdf" download class="button">
+          <span class="emoji">📄</span> Download PDF
+        </a>
+      </div>
+      <h2>🔧 Tools & Useful Links</h2>
+      <ul>
+        <li><a href="https://www.kinglercalc.com/" target="_blank" rel="noopener noreferrer">Vanilla Damage Calculator – KinglerCalc</a></li>
+        <li><a href="https://nuzlocke.app/" target="_blank" rel="noopener noreferrer">Nuzlocke Tracker for Vanilla & ROM Hacks</a></li>
+      </ul>
+      <p><strong>Recommended:</strong> Start on a vanilla game. Once confident, try Emerald Imperium, Radical Red, Run & Bun, Unbound, Blaze Black, Volt White, Blazing Emerald, Renegade Platinum or other ROM hacks.</p>
+    </div>
 
-  </div>
-  <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A"  
-   target="_blank" 
-   id="support-btn">
-  ❤️ Support
-</a>
+    <div class="pdf-download">
+      <button onclick="openHallOfFame()">
+        <span class="emoji">🏆</span> Hall of Fame
+      </button>
+      <button onclick="openTeam()">
+        <span class="emoji">🛠️</span> Team Builder
+      </button>
+      <button onclick="openIdeas()">
+        <span class="emoji">✉️</span> Mail
+      </button>
+    </div>
+  </main>
 
-</body>
-<script>
-  const toggle = document.getElementById("darkModeToggle");
-  toggle.addEventListener("click", () => {
-    const container = document.querySelector('.container');
-    container.classList.add("content-shifting");
-    
-    setTimeout(() => {
-      document.body.classList.toggle("dark-mode");
-      document.querySelector('.container').classList.toggle("dark-mode");
-      document.getElementById('main-header').classList.toggle('dark-mode');
-      
-      // Save dark mode state to localStorage
-      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-      
-      setTimeout(() => {
-        container.classList.remove("content-shifting");
-      }, 300);
-    }, 0);
-  });
+  <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A"
+     target="_blank"
+     id="support-btn"
+     rel="noopener noreferrer">
+    <span class="emoji">❤️</span> Support
+  </a>
 
-  // Load saved preferences on page load
-  window.onload = () => {
-    // Check URL parameter first, then localStorage, then default to Italian
-    const urlLang = getQueryParam('lang');
-    const savedLang = urlLang || localStorage.getItem('preferredLang') || 'it';
-    switchLang(savedLang);
-    
-    // Set dark mode from localStorage if enabled
-    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
-    if (darkModeEnabled) {
-      document.body.classList.add('dark-mode');
-      document.querySelector('.container').classList.add('dark-mode');
-      document.getElementById('main-header').classList.add('dark-mode');
+  <script src="script.js"></script>
+  <script>
+    // Specific functions for index.html to navigate to other pages
+    function openHallOfFame() {
+      window.location.href = "hall_of_fame.html";
     }
-  };
-</script>
+    function openTeam() {
+      window.location.href = "team_builder.html";
+    }
+    function openIdeas() {
+      window.location.href = "ideas.html";
+    }
+  </script>
+</body>
 </html>
