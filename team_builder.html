@@ -5,247 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Locked Team – Tools</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <style>
-    body {
-      background: linear-gradient(270deg, #fdd100, #2873b7);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      animation: fadeIn 0.5s ease-in-out;
-      color: #000;
-      transition: all 0.6s ease;
-    }
-    body.dark-mode {
-      background: linear-gradient(90deg, #5a4a42, #bd4242);
-      color: #fff;
-    }
-    #main-header {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 60px;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 30px;
-      border-radius: 30px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      z-index: 1000;
-      width: 90%;
-      max-width: 800px;
-    }
-    body.dark-mode #main-header {
-      background: #000;
-      box-shadow: 0 0 15px rgba(255,0,0,0.3);
-    }
-    #header-title {
-      margin: 0;
-      font-size: 1.5rem;
-      color: #222;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-    }
-    body.dark-mode #header-title {
-      color: #fff;
-    }
-    #darkModeToggle {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 5px;
-    }
-    .lang-switch {
-      display: flex;
-      gap: 10px;
-      position: absolute;
-      right: 20px;
-      top: 20px;
-    }
-    .lang-switch img {
-      width: 30px;
-      height: 20px;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: transform 0.2s;
-    }
-    .lang-switch img:hover {
-      transform: scale(1.1);
-    }
-    .container {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 800px;
-      box-shadow: 0 0 15px rgb(0, 0, 0);
-      margin-top: 80px;
-      width: 100%;
-    }
-    .container.dark-mode {
-      background-color: #000000;
-      box-shadow: 0 0 15px rgb(255, 0, 0);
-    }
-    body.dark-mode h1,
-    body.dark-mode h2,
-    body.dark-mode h4,
-    body.dark-mode p {
-      color: white;
-    }
-    .lang-it, .lang-en {
-      display: none;
-    }
-    .lang-it.active, .lang-en.active {
-      display: block;
-    }
-    .tool-container {
-      margin-bottom: 2rem;
-    }
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 4px;
-    }
-    .pdf-download {
-      margin-top: 2rem;
-      text-align: center;
-    }
-    .pdf-download button {
-      cursor: pointer;
-      padding: 10px 16px;
-      font-size: 1rem;
-      border-radius: 999px;
-      border: none;
-      background-color: #ff4d4d;
-      color: white;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: background-color 0.2s ease;
-    }
-    .pdf-download button:hover {
-      background-color: #ff1a1a;
-    }
-    #support-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ff4d4d;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 1rem;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: background-color 0.2s ease;
-      z-index: 1000;
-    }
-    #support-btn:hover {
-      background-color: #ff1a1a;
-    }
-    .side-gif {
-      position: absolute;
-      top: 250px;
-      width: 220px;
-      z-index: 1;
-    }
-    .side-gif.left {
-      left: 40px;
-    }
-    .side-gif.right {
-      right: 40px;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @media (max-width: 768px) {
-      .desktop-only {
-          display: none;
-      }
-      #header-title {
-          font-size: 1rem;
-          white-space: normal;
-          max-width: 60%;
-          text-align: center;
-      }
-      #main-header {
-          padding: 0 10px;
-          height: 50px;
-          width: 95%;
-      }
-      #darkModeToggle {
-          font-size: 0.9rem;
-          padding: 3px;
-      }
-      .lang-switch {
-          gap: 5px;
-      }
-      .lang-switch img {
-          width: 20px;
-          height: 12px;
-      }
-      .container {
-          padding: 1rem;
-          margin-top: 70px;
-      }
-      h1 {
-          font-size: 1.5rem;
-      }
-      h2 {
-          font-size: 1.2rem;
-      }
-      #support-btn {
-          padding: 8px 12px;
-          font-size: 0.9rem;
-          bottom: 15px;
-          right: 15px;
-      }
-      .pdf-download button {
-          padding: 8px 12px;
-          font-size: 0.9rem;
-      }
-      iframe {
-          height: 400px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header id="main-header">
-    <button id="darkModeToggle">🌓</button>
+    <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌓</button>
     <h2 id="header-title">LOCKED TEAM PROJECT</h2>
     <div class="lang-switch">
-      <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')">
-      <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')">
+      <img src="https://flagcdn.com/w40/it.png" alt="Italiano" onclick="switchLang('it')" aria-label="Switch to Italian">
+      <img src="https://flagcdn.com/w40/gb.png" alt="English" onclick="switchLang('en')" aria-label="Switch to English">
     </div>
   </header>
 
-  <div class="side-gifs">
-    <img src="logo.gif" class="side-gif left desktop-only" alt="logo">
-    <img src="excadrill.gif" class="side-gif right desktop-only" alt="excadrill">
+  <div class="side-gifs desktop-only">
+    <img src="logo.gif" class="side-gif left" alt="Locked Team Logo">
+    <img src="excadrill.gif" class="side-gif right" alt="Excadrill">
   </div>
 
-  <div class="container">
+  <main class="container">
     <div class="lang-it active">
       <h1>🛠️ Strumenti</h1>
-      
+
       <div class="tool-container">
         <h2>Team Builder</h2>
-        <iframe src="https://mypokemonteam.com/" title="Pokémon Team Builder"></iframe>
+        <iframe src="https://mypokemonteam.com/" title="Pokémon Team Builder" loading="lazy"></iframe>
       </div>
 
       <div class="tool-container">
         <h2>Calcolatore Danni</h2>
-        <iframe src="https://www.kinglercalc.com/" title="Pokémon Damage Calculator"></iframe>
+        <iframe src="https://www.kinglercalc.com/" title="Pokémon Damage Calculator" loading="lazy"></iframe>
       </div>
 
       <div class="pdf-download">
@@ -255,71 +44,30 @@
 
     <div class="lang-en">
       <h1>🛠️ Tools</h1>
-      
+
       <div class="tool-container">
         <h2>Team Builder</h2>
-        <iframe src="https://mypokemonteam.com/" title="Pokémon Team Builder"></iframe>
+        <iframe src="https://mypokemonteam.com/" title="Pokémon Team Builder" loading="lazy"></iframe>
       </div>
 
       <div class="tool-container">
         <h2>Damage Calculator</h2>
-        <iframe src="https://www.kinglercalc.com/" title="Pokémon Damage Calculator"></iframe>
+        <iframe src="https://www.kinglercalc.com/" title="Pokémon Damage Calculator" loading="lazy"></iframe>
       </div>
 
       <div class="pdf-download">
         <button onclick="backToRules()">📜 Back to Rules</button>
       </div>
     </div>
-  </div>
+  </main>
 
-  <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A" target="_blank" id="support-btn">❤️ Support</a>
+  <a href="https://www.paypal.com/donate?hosted_button_id=CKPKZMZHCK86A"
+     target="_blank"
+     id="support-btn"
+     rel="noopener noreferrer">
+    ❤️ Support
+  </a>
 
-  <script>
-    // Funzione per ottenere il valore di un parametro dalla URL
-    function getQueryParam(param) {
-      var urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
-    
-    // Funzione per cambiare lingua
-    function switchLang(lang) {
-      document.querySelector('.lang-it').classList.remove('active');
-      document.querySelector('.lang-en').classList.remove('active');
-      document.querySelector('.lang-' + lang).classList.add('active');
-      // Save language preference
-      localStorage.setItem('preferredLang', lang);
-    }
-
-    // Gestione dark mode
-    const toggle = document.getElementById("darkModeToggle");
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-mode");
-      document.querySelector('.container').classList.toggle("dark-mode");
-      document.getElementById('main-header').classList.toggle('dark-mode');
-      // Save dark mode state
-      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-    });
-
-    // La funzione per tornare alla pagina precedente
-    function backToRules() {
-      history.back();
-    }
-
-    // Load saved preferences on page load
-    window.onload = () => {
-      // Check URL parameter first, then localStorage, then default to Italian
-      const urlLang = getQueryParam('lang');
-      const savedLang = urlLang || localStorage.getItem('preferredLang') || 'it';
-      switchLang(savedLang);
-      
-      // Set dark mode from localStorage if enabled
-      const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
-      if (darkModeEnabled) {
-        document.body.classList.add('dark-mode');
-        document.querySelector('.container').classList.add('dark-mode');
-        document.getElementById('main-header').classList.add('dark-mode');
-      }
-    };
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
